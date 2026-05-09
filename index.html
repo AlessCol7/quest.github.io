@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PYTHON QUEST 🐍</title>
+<title>PYTHON QUEST — Episode 5 🔁</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -12,6 +12,7 @@
     --neon-pink: #ff2d78;
     --neon-yellow: #ffe600;
     --neon-purple: #bf00ff;
+    --neon-orange: #ff8c00;
     --dark: #0a0a1a;
     --darker: #060610;
     --card: #111130;
@@ -30,48 +31,47 @@
     overflow-x: hidden;
   }
 
-  /* Animated starfield */
   body::before {
     content: '';
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
     background-image:
-      radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.4) 0%, transparent 100%),
-      radial-gradient(1px 1px at 30% 70%, rgba(255,255,255,0.3) 0%, transparent 100%),
-      radial-gradient(1px 1px at 50% 40%, rgba(255,255,255,0.5) 0%, transparent 100%),
-      radial-gradient(1px 1px at 70% 10%, rgba(255,255,255,0.3) 0%, transparent 100%),
-      radial-gradient(1px 1px at 90% 60%, rgba(255,255,255,0.4) 0%, transparent 100%),
-      radial-gradient(1px 1px at 15% 85%, rgba(255,255,255,0.2) 0%, transparent 100%),
-      radial-gradient(1px 1px at 55% 90%, rgba(255,255,255,0.3) 0%, transparent 100%),
-      radial-gradient(1px 1px at 80% 30%, rgba(255,255,255,0.4) 0%, transparent 100%),
-      radial-gradient(1px 1px at 25% 50%, rgba(255,255,255,0.2) 0%, transparent 100%),
-      radial-gradient(1px 1px at 65% 75%, rgba(255,255,255,0.3) 0%, transparent 100%);
+      radial-gradient(1px 1px at 8% 15%, rgba(255,140,0,0.35) 0%, transparent 100%),
+      radial-gradient(1px 1px at 28% 65%, rgba(255,255,255,0.25) 0%, transparent 100%),
+      radial-gradient(1px 1px at 48% 35%, rgba(255,140,0,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 68% 8%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 88% 55%, rgba(255,140,0,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 18% 80%, rgba(255,255,255,0.2) 0%, transparent 100%),
+      radial-gradient(1px 1px at 52% 88%, rgba(255,140,0,0.25) 0%, transparent 100%),
+      radial-gradient(1px 1px at 78% 25%, rgba(255,255,255,0.35) 0%, transparent 100%),
+      radial-gradient(1px 1px at 22% 45%, rgba(255,255,255,0.2) 0%, transparent 100%),
+      radial-gradient(1px 1px at 62% 72%, rgba(255,140,0,0.3) 0%, transparent 100%);
     pointer-events: none;
     z-index: 0;
   }
 
   .container { max-width: 860px; margin: 0 auto; padding: 20px; position: relative; z-index: 1; }
 
-  /* HUD - top bar */
+  /* HUD */
   .hud {
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(6,6,16,0.95);
-    border-bottom: 2px solid var(--neon-blue);
+    background: rgba(6,6,16,0.96);
+    border-bottom: 2px solid var(--neon-orange);
     padding: 10px 20px;
     display: flex;
     align-items: center;
     gap: 16px;
     flex-wrap: wrap;
-    box-shadow: 0 0 20px rgba(0,245,255,0.3);
+    box-shadow: 0 0 20px rgba(255,140,0,0.25);
   }
 
   .hud-title {
     font-family: 'Orbitron', monospace;
-    font-size: 18px;
-    color: var(--neon-green);
-    text-shadow: 0 0 10px var(--neon-green);
+    font-size: 16px;
+    color: var(--neon-orange);
+    text-shadow: 0 0 10px var(--neon-orange);
     flex: 1;
   }
 
@@ -89,7 +89,7 @@
 
   .xp-val { color: var(--neon-yellow); font-family: 'Orbitron', monospace; }
   .lives-val { color: var(--neon-pink); font-size: 16px; }
-  .level-val { color: var(--neon-purple); font-family: 'Orbitron', monospace; }
+  .level-val { color: var(--neon-orange); font-family: 'Orbitron', monospace; }
 
   .xp-bar-wrap {
     width: 100%;
@@ -101,10 +101,10 @@
   }
   .xp-bar {
     height: 100%;
-    background: linear-gradient(90deg, var(--neon-yellow), var(--neon-green));
+    background: linear-gradient(90deg, var(--neon-orange), var(--neon-yellow));
     border-radius: 10px;
     transition: width 0.5s cubic-bezier(.4,2,.6,1);
-    box-shadow: 0 0 8px var(--neon-yellow);
+    box-shadow: 0 0 8px var(--neon-orange);
   }
 
   /* HERO */
@@ -116,11 +116,20 @@
 
   .hero h1 {
     font-family: 'Orbitron', monospace;
-    font-size: clamp(32px, 7vw, 60px);
+    font-size: clamp(28px, 6vw, 54px);
     font-weight: 900;
-    color: var(--neon-green);
-    text-shadow: 0 0 20px var(--neon-green), 0 0 60px rgba(57,255,20,0.3);
+    color: var(--neon-orange);
+    text-shadow: 0 0 20px var(--neon-orange), 0 0 60px rgba(255,140,0,0.3);
     line-height: 1.1;
+  }
+
+  .hero .episode {
+    font-family: 'Orbitron', monospace;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
   }
 
   .hero .subtitle {
@@ -132,14 +141,14 @@
 
   .hero .intro-box {
     background: var(--card);
-    border: 1px solid var(--neon-blue);
+    border: 1px solid var(--neon-orange);
     border-radius: 16px;
     padding: 20px 24px;
     margin-top: 24px;
     text-align: left;
     font-size: 16px;
     line-height: 1.7;
-    box-shadow: 0 0 20px rgba(0,245,255,0.1);
+    box-shadow: 0 0 20px rgba(255,140,0,0.1);
   }
 
   /* LEVEL BADGE */
@@ -152,15 +161,15 @@
     border-radius: 12px;
     padding: 8px 20px;
     font-family: 'Orbitron', monospace;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 700;
     margin: 30px 0 10px;
     text-transform: uppercase;
   }
 
-  .level-badge.blue { border-color: var(--neon-blue); color: var(--neon-blue); box-shadow: 0 0 15px rgba(0,245,255,0.2); }
-  .level-badge.green { border-color: var(--neon-green); color: var(--neon-green); box-shadow: 0 0 15px rgba(57,255,20,0.2); }
-  .level-badge.pink { border-color: var(--neon-pink); color: var(--neon-pink); box-shadow: 0 0 15px rgba(255,45,120,0.2); }
+  .level-badge.orange { border-color: var(--neon-orange); color: var(--neon-orange); box-shadow: 0 0 15px rgba(255,140,0,0.2); }
+  .level-badge.blue   { border-color: var(--neon-blue);   color: var(--neon-blue);   box-shadow: 0 0 15px rgba(0,245,255,0.2); }
+  .level-badge.pink   { border-color: var(--neon-pink);   color: var(--neon-pink);   box-shadow: 0 0 15px rgba(255,45,120,0.2); }
   .level-badge.yellow { border-color: var(--neon-yellow); color: var(--neon-yellow); box-shadow: 0 0 15px rgba(255,230,0,0.2); }
   .level-badge.purple { border-color: var(--neon-purple); color: var(--neon-purple); box-shadow: 0 0 15px rgba(191,0,255,0.2); }
 
@@ -176,7 +185,7 @@
 
   .card h2 {
     font-family: 'Orbitron', monospace;
-    font-size: 16px;
+    font-size: 15px;
     margin-bottom: 14px;
     display: flex;
     align-items: center;
@@ -188,38 +197,40 @@
   /* CODE BLOCK */
   .code-block {
     background: #06060f;
-    border: 1px solid rgba(0,245,255,0.2);
-    border-left: 4px solid var(--neon-blue);
+    border: 1px solid rgba(255,140,0,0.2);
+    border-left: 4px solid var(--neon-orange);
     border-radius: 10px;
     padding: 16px 20px;
     font-family: 'Courier New', monospace;
     font-size: 14px;
-    line-height: 1.8;
+    line-height: 1.9;
     margin: 14px 0;
     overflow-x: auto;
     position: relative;
   }
 
-  .code-block .kw { color: #ff79c6; }
+  .code-block .kw  { color: #ff79c6; }
   .code-block .str { color: #f1fa8c; }
   .code-block .num { color: #bd93f9; }
-  .code-block .fn { color: var(--neon-blue); }
-  .code-block .cm { color: #6272a4; font-style: italic; }
+  .code-block .fn  { color: var(--neon-blue); }
+  .code-block .cm  { color: #6272a4; font-style: italic; }
   .code-block .var { color: var(--neon-green); }
-  .code-block .op { color: var(--neon-pink); }
+  .code-block .op  { color: var(--neon-pink); }
   .code-block .out { color: #50fa7b; }
+  .code-block .brk { color: var(--neon-orange); font-weight: 700; }
+  .code-block .cnt { color: var(--neon-blue); font-weight: 700; }
 
   .code-label {
     font-size: 11px;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: var(--neon-blue);
+    color: var(--neon-orange);
     margin-bottom: 4px;
     font-family: 'Orbitron', monospace;
   }
 
-  /* MISSION BOX */
+  /* MISSION */
   .mission {
     border: 2px dashed var(--neon-yellow);
     border-radius: 14px;
@@ -276,7 +287,7 @@
     line-height: 1.6;
   }
 
-  .hint-content.visible { display: block; }
+  .hint-content.visible { display: block; animation: fadeIn 0.3s ease; }
 
   /* QUIZ */
   .quiz-box {
@@ -306,7 +317,7 @@
     font-size: 16px;
     font-weight: 800;
     margin-bottom: 16px;
-    line-height: 1.5;
+    line-height: 1.6;
   }
 
   .quiz-options {
@@ -333,7 +344,7 @@
 
   .quiz-option:hover:not(:disabled) { border-color: var(--neon-purple); background: rgba(191,0,255,0.1); transform: scale(1.01); }
   .quiz-option.correct { border-color: var(--neon-green); background: rgba(57,255,20,0.12); color: var(--neon-green); }
-  .quiz-option.wrong { border-color: var(--neon-pink); background: rgba(255,45,120,0.1); color: var(--neon-pink); }
+  .quiz-option.wrong   { border-color: var(--neon-pink);  background: rgba(255,45,120,0.1);  color: var(--neon-pink); }
   .quiz-option:disabled { cursor: default; }
 
   .quiz-feedback {
@@ -344,10 +355,10 @@
     line-height: 1.5;
   }
   .quiz-feedback.show { display: block; animation: popIn 0.3s ease; }
-  .quiz-feedback.ok { color: var(--neon-green); }
+  .quiz-feedback.ok   { color: var(--neon-green); }
   .quiz-feedback.fail { color: var(--neon-pink); }
 
-  /* XP BURST */
+  /* XP BURST inline */
   .xp-burst {
     display: inline-block;
     background: var(--neon-yellow);
@@ -361,7 +372,7 @@
     animation: popIn 0.3s ease;
   }
 
-  /* BOSS FIGHT */
+  /* BOSS */
   .boss-fight {
     border: 2px solid var(--neon-pink);
     border-radius: 16px;
@@ -388,40 +399,7 @@
     white-space: nowrap;
   }
 
-  /* DRAG AND DROP */
-  .drag-area {
-    min-height: 54px;
-    border: 2px dashed rgba(0,245,255,0.3);
-    border-radius: 10px;
-    padding: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    align-items: center;
-    justify-content: center;
-    transition: border-color 0.2s;
-    background: rgba(0,245,255,0.02);
-  }
-
-  .drag-area.over { border-color: var(--neon-blue); background: rgba(0,245,255,0.07); }
-
-  .drag-chip {
-    background: var(--card2);
-    border: 1.5px solid rgba(0,245,255,0.3);
-    border-radius: 8px;
-    padding: 6px 14px;
-    font-family: 'Courier New', monospace;
-    font-size: 14px;
-    cursor: grab;
-    user-select: none;
-    color: var(--neon-blue);
-    transition: all 0.15s;
-  }
-
-  .drag-chip:hover { border-color: var(--neon-blue); transform: scale(1.05); }
-  .drag-chip:active { cursor: grabbing; transform: scale(0.97); }
-
-  /* BUTTON */
+  /* BUTTONS */
   .btn {
     display: inline-flex;
     align-items: center;
@@ -438,115 +416,26 @@
     letter-spacing: 0.5px;
   }
 
-  .btn-green { background: var(--neon-green); color: #000; }
-  .btn-green:hover { box-shadow: 0 0 20px var(--neon-green); transform: scale(1.02); }
-  .btn-blue { background: var(--neon-blue); color: #000; }
-  .btn-blue:hover { box-shadow: 0 0 20px var(--neon-blue); transform: scale(1.02); }
-  .btn-pink { background: var(--neon-pink); color: #fff; }
-  .btn-pink:hover { box-shadow: 0 0 20px var(--neon-pink); transform: scale(1.02); }
+  .btn-orange { background: var(--neon-orange); color: #000; }
+  .btn-orange:hover { box-shadow: 0 0 20px var(--neon-orange); transform: scale(1.02); }
+  .btn-green  { background: var(--neon-green);  color: #000; }
+  .btn-green:hover  { box-shadow: 0 0 20px var(--neon-green);  transform: scale(1.02); }
+  .btn-blue   { background: var(--neon-blue);   color: #000; }
+  .btn-blue:hover   { box-shadow: 0 0 20px var(--neon-blue);   transform: scale(1.02); }
+  .btn-pink   { background: var(--neon-pink);   color: #fff; }
+  .btn-pink:hover   { box-shadow: 0 0 20px var(--neon-pink);   transform: scale(1.02); }
   .btn-yellow { background: var(--neon-yellow); color: #000; }
   .btn-yellow:hover { box-shadow: 0 0 20px var(--neon-yellow); transform: scale(1.02); }
   .btn:active { transform: scale(0.97); }
+  .btn:disabled { opacity: 0.5; cursor: default; transform: none; box-shadow: none; }
 
-  /* VISUAL DEMO */
-  .visual-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin: 14px 0;
-  }
+  /* SECTION */
+  .section { display: none; animation: slideUp 0.4s ease; }
+  .section.active { display: block; }
 
-  .list-slot {
-    background: var(--card2);
-    border: 1.5px solid var(--neon-blue);
-    border-radius: 8px;
-    min-width: 54px;
-    text-align: center;
-    overflow: hidden;
-    box-shadow: 0 0 8px rgba(0,245,255,0.1);
-  }
+  .nav-btns { display: flex; gap: 12px; margin: 24px 0; flex-wrap: wrap; }
 
-  .list-slot .index {
-    background: rgba(0,245,255,0.1);
-    font-size: 10px;
-    padding: 2px 4px;
-    color: var(--neon-blue);
-    font-family: 'Orbitron', monospace;
-    font-weight: 700;
-  }
-
-  .list-slot .value {
-    padding: 8px 10px;
-    font-family: 'Courier New', monospace;
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--neon-green);
-  }
-
-  /* FOR LOOP ANIMATION */
-  .loop-demo {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    flex-wrap: wrap;
-    margin: 14px 0;
-  }
-
-  .loop-item {
-    background: var(--card2);
-    border: 2px solid rgba(255,255,255,0.1);
-    border-radius: 8px;
-    padding: 8px 14px;
-    font-family: 'Courier New', monospace;
-    font-size: 14px;
-    color: var(--muted);
-    transition: all 0.3s;
-  }
-
-  .loop-item.active {
-    border-color: var(--neon-yellow);
-    color: var(--neon-yellow);
-    background: rgba(255,230,0,0.08);
-    transform: scale(1.1);
-    box-shadow: 0 0 12px rgba(255,230,0,0.3);
-  }
-
-  .loop-item.done {
-    border-color: var(--neon-green);
-    color: var(--neon-green);
-    background: rgba(57,255,20,0.05);
-  }
-
-  .loop-output {
-    background: #06060f;
-    border-left: 3px solid var(--neon-green);
-    border-radius: 8px;
-    padding: 12px 16px;
-    font-family: 'Courier New', monospace;
-    font-size: 14px;
-    min-height: 40px;
-    color: var(--neon-green);
-    margin: 10px 0;
-    line-height: 1.8;
-    white-space: pre-wrap;
-  }
-
-  /* BOOL DISPLAY */
-  .bool-display {
-    display: inline-block;
-    font-family: 'Orbitron', monospace;
-    font-size: 18px;
-    font-weight: 700;
-    padding: 8px 20px;
-    border-radius: 10px;
-    margin: 8px 4px;
-    transition: all 0.3s;
-  }
-
-  .bool-true { background: rgba(57,255,20,0.15); color: var(--neon-green); border: 2px solid var(--neon-green); box-shadow: 0 0 10px rgba(57,255,20,0.2); }
-  .bool-false { background: rgba(255,45,120,0.12); color: var(--neon-pink); border: 2px solid var(--neon-pink); box-shadow: 0 0 10px rgba(255,45,120,0.2); }
-
-  /* INFO CALLOUT */
+  /* CALLOUT */
   .callout {
     border-radius: 10px;
     padding: 14px 18px;
@@ -555,9 +444,11 @@
     line-height: 1.7;
   }
 
-  .callout.info { background: rgba(0,245,255,0.07); border-left: 3px solid var(--neon-blue); }
-  .callout.warn { background: rgba(255,230,0,0.07); border-left: 3px solid var(--neon-yellow); color: var(--neon-yellow); }
-  .callout.tip { background: rgba(57,255,20,0.06); border-left: 3px solid var(--neon-green); color: #aaffaa; }
+  .callout.info   { background: rgba(0,245,255,0.07);   border-left: 3px solid var(--neon-blue);   }
+  .callout.warn   { background: rgba(255,230,0,0.07);   border-left: 3px solid var(--neon-yellow); color: var(--neon-yellow); }
+  .callout.tip    { background: rgba(57,255,20,0.06);   border-left: 3px solid var(--neon-green);  color: #aaffaa; }
+  .callout.danger { background: rgba(255,45,120,0.07);  border-left: 3px solid var(--neon-pink);   color: #ffaabb; }
+  .callout.orange { background: rgba(255,140,0,0.07);   border-left: 3px solid var(--neon-orange); color: #ffcc88; }
 
   /* PROGRESS MAP */
   .progress-map {
@@ -569,133 +460,206 @@
     justify-content: center;
   }
 
-  .prog-node {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-  }
+  .prog-node { display: flex; flex-direction: column; align-items: center; gap: 6px; }
 
   .prog-circle {
-    width: 44px;
-    height: 44px;
+    width: 44px; height: 44px;
     border-radius: 50%;
     border: 2px solid rgba(255,255,255,0.15);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: center;
     font-family: 'Orbitron', monospace;
-    font-size: 13px;
-    font-weight: 700;
+    font-size: 13px; font-weight: 700;
     color: var(--muted);
     transition: all 0.4s;
   }
 
-  .prog-circle.active { border-color: var(--neon-green); color: var(--neon-green); box-shadow: 0 0 12px rgba(57,255,20,0.4); }
-  .prog-circle.done { background: rgba(57,255,20,0.15); border-color: var(--neon-green); color: var(--neon-green); }
-  .prog-circle.current { background: var(--neon-yellow); border-color: var(--neon-yellow); color: #000; animation: pulse 1.2s ease-in-out infinite; }
+  .prog-circle.done    { background: rgba(57,255,20,0.15); border-color: var(--neon-green);  color: var(--neon-green); }
+  .prog-circle.current { background: var(--neon-orange);   border-color: var(--neon-orange); color: #000; animation: pulse 1.2s ease-in-out infinite; }
 
-  .prog-label { font-size: 10px; color: var(--muted); font-weight: 700; text-align: center; max-width: 60px; }
+  .prog-label { font-size: 10px; color: var(--muted); font-weight: 700; text-align: center; max-width: 64px; }
 
   .prog-line {
-    width: 30px;
-    height: 2px;
+    width: 28px; height: 2px;
     background: rgba(255,255,255,0.1);
     margin-top: -20px;
     transition: background 0.4s;
   }
   .prog-line.done { background: var(--neon-green); }
 
-  /* OPERATOR COMPARE */
-  .op-table {
-    width: 100%;
-    border-collapse: collapse;
+  /* SECTION TITLE */
+  .section-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 22px; font-weight: 900;
+    margin-bottom: 6px; line-height: 1.3;
+  }
+
+  .section-subtitle {
+    font-size: 15px; color: var(--muted);
+    margin-bottom: 20px; line-height: 1.5;
+  }
+
+  /* WHILE VISUALISER */
+  .while-track {
+    display: flex;
+    gap: 0;
+    align-items: center;
+    margin: 16px 0;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+
+  .wt-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    min-width: 60px;
+  }
+
+  .wt-bubble {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.12);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Orbitron', monospace;
+    font-size: 13px; font-weight: 700;
+    color: var(--muted);
+    transition: all 0.35s;
+  }
+
+  .wt-bubble.active  { border-color: var(--neon-orange); color: var(--neon-orange); background: rgba(255,140,0,0.12); transform: scale(1.15); box-shadow: 0 0 14px rgba(255,140,0,0.4); }
+  .wt-bubble.passed  { border-color: var(--neon-green);  color: var(--neon-green);  background: rgba(57,255,20,0.08); }
+  .wt-bubble.stopped { border-color: var(--neon-pink);   color: var(--neon-pink);   background: rgba(255,45,120,0.1); }
+
+  .wt-label { font-size: 10px; color: var(--muted); font-weight: 700; text-align: center; }
+
+  .wt-arrow { color: var(--muted); font-size: 18px; margin-top: -14px; padding: 0 2px; }
+
+  .loop-output {
+    background: #06060f;
+    border-left: 3px solid var(--neon-orange);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-family: 'Courier New', monospace;
     font-size: 14px;
+    min-height: 44px;
+    color: var(--neon-green);
+    margin: 10px 0;
+    line-height: 1.9;
+    white-space: pre-wrap;
+    transition: all 0.2s;
+  }
+
+  /* BREAK / CONTINUE COMPARISON */
+  .bc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
     margin: 14px 0;
   }
+  @media (max-width: 520px) { .bc-grid { grid-template-columns: 1fr; } }
 
-  .op-table th {
-    background: rgba(0,245,255,0.08);
-    color: var(--neon-blue);
-    padding: 8px 14px;
-    text-align: left;
+  .bc-card {
+    border-radius: 12px;
+    padding: 16px;
+  }
+  .bc-card.brk { background: rgba(255,45,120,0.07);  border: 1.5px solid rgba(255,45,120,0.3); }
+  .bc-card.cnt { background: rgba(0,245,255,0.06);   border: 1.5px solid rgba(0,245,255,0.3); }
+
+  .bc-title {
     font-family: 'Orbitron', monospace;
-    font-size: 11px;
-    letter-spacing: 1px;
+    font-size: 15px; font-weight: 700;
+    margin-bottom: 8px;
   }
 
-  .op-table td {
-    padding: 10px 14px;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-    font-family: 'Courier New', monospace;
-  }
+  .bc-title.brk { color: var(--neon-pink); }
+  .bc-title.cnt { color: var(--neon-blue); }
 
-  .op-table tr:hover td { background: rgba(255,255,255,0.03); }
-
-  .op-sym { color: var(--neon-pink); font-weight: 700; font-size: 16px; }
-  .op-name { color: var(--muted); font-size: 13px; font-family: 'Nunito', sans-serif; }
-  .op-example { color: var(--neon-yellow); }
-  .op-result-t { color: var(--neon-green); font-weight: 700; }
-  .op-result-f { color: var(--neon-pink); font-weight: 700; }
-
-  /* CELEBRATION */
-  .celebrate {
-    display: none;
-    text-align: center;
-    padding: 30px;
-    animation: fadeIn 0.5s ease;
-  }
-
-  .celebrate.show { display: block; }
-
-  .celebrate h2 {
-    font-family: 'Orbitron', monospace;
-    font-size: 28px;
-    color: var(--neon-yellow);
-    text-shadow: 0 0 20px var(--neon-yellow);
-    margin-bottom: 10px;
-  }
-
-  /* SECTION NAV */
-  .section {
-    display: none;
-    animation: slideUp 0.4s ease;
-  }
-
-  .section.active { display: block; }
-
-  .nav-btns {
+  /* DRAG AND DROP */
+  .drag-bank {
     display: flex;
-    gap: 12px;
-    margin: 24px 0;
     flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 10px;
+    margin: 12px 0;
+    min-height: 50px;
   }
 
-  /* SCROLL ANIMATION */
-  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-  @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-  @keyframes popIn { from { transform: scale(0.7); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-  @keyframes pulse { 0%,100% { box-shadow: 0 0 8px rgba(255,230,0,0.4); } 50% { box-shadow: 0 0 20px rgba(255,230,0,0.8); } }
-  @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
-  @keyframes xpFlash { 0% { opacity:0; transform: translateY(-10px) scale(0.8); } 50% { opacity:1; transform: translateY(-30px) scale(1.1); } 100% { opacity:0; transform: translateY(-50px); } }
+  .drag-chip {
+    background: var(--card2);
+    border: 1.5px solid rgba(255,140,0,0.35);
+    border-radius: 8px;
+    padding: 7px 14px;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    cursor: grab;
+    user-select: none;
+    color: var(--neon-orange);
+    transition: all 0.15s;
+  }
 
-  .snake-anim { display: inline-block; animation: float 2s ease-in-out infinite; }
+  .drag-chip:hover  { border-color: var(--neon-orange); transform: scale(1.04); }
+  .drag-chip:active { cursor: grabbing; transform: scale(0.97); opacity: 0.7; }
+  .drag-chip.used   { opacity: 0.3; cursor: default; }
 
-  .divider {
-    border: none;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  .drop-zone {
+    min-height: 52px;
+    border: 2px dashed rgba(255,140,0,0.3);
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.2s, background 0.2s;
+    background: rgba(255,140,0,0.02);
+    margin: 8px 0;
+  }
+
+  .drop-zone.over { border-color: var(--neon-orange); background: rgba(255,140,0,0.07); }
+  .drop-zone .placeholder { color: var(--muted); font-size: 13px; }
+
+  /* INFINITE LOOP WARNING */
+  .danger-box {
+    border: 2px solid var(--neon-pink);
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin: 14px 0;
+    background: rgba(255,45,120,0.05);
+    position: relative;
+  }
+  .danger-box::before {
+    content: '☠️ DANGER ZONE';
+    position: absolute;
+    top: -11px; left: 16px;
+    background: var(--darker);
+    padding: 0 10px;
+    font-family: 'Orbitron', monospace;
+    font-size: 11px; font-weight: 700;
+    color: var(--neon-pink);
+  }
+
+  /* CONGRATS */
+  .congrats-banner {
+    background: linear-gradient(135deg, rgba(255,140,0,0.1), rgba(255,230,0,0.1));
+    border: 2px solid var(--neon-orange);
+    border-radius: 14px;
+    padding: 24px;
+    text-align: center;
     margin: 20px 0;
+    display: none;
   }
+  .congrats-banner.show { display: block; animation: popIn 0.4s ease; }
 
   /* XP POPUP */
   .xp-popup {
     position: fixed;
-    top: 80px;
-    right: 20px;
+    top: 80px; right: 20px;
     font-family: 'Orbitron', monospace;
-    font-size: 22px;
-    font-weight: 900;
+    font-size: 22px; font-weight: 900;
     color: var(--neon-yellow);
     text-shadow: 0 0 10px var(--neon-yellow);
     pointer-events: none;
@@ -703,52 +667,35 @@
     z-index: 200;
   }
 
-  .congrats-banner {
-    background: linear-gradient(135deg, rgba(57,255,20,0.1), rgba(0,245,255,0.1));
-    border: 2px solid var(--neon-green);
-    border-radius: 14px;
-    padding: 20px;
-    text-align: center;
-    margin: 20px 0;
-    display: none;
+  /* SLIDER DEMO */
+  .slider-row {
+    display: flex; align-items: center; gap: 12px; margin: 10px 0;
   }
+  .slider-row label { font-size: 13px; color: var(--muted); font-weight: 700; min-width: 110px; }
+  .slider-row input { flex: 1; }
+  .slider-row span  { font-family: 'Orbitron', monospace; font-size: 14px; color: var(--neon-yellow); min-width: 36px; text-align: right; }
 
-  .congrats-banner.show { display: block; animation: popIn 0.4s ease; }
+  /* ANIMATIONS */
+  @keyframes fadeIn  { from { opacity: 0; }                          to { opacity: 1; } }
+  @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes popIn   { from { transform: scale(0.7); opacity: 0; }   to { transform: scale(1); opacity: 1; } }
+  @keyframes pulse   { 0%,100% { box-shadow: 0 0 8px rgba(255,140,0,.4); } 50% { box-shadow: 0 0 22px rgba(255,140,0,.9); } }
+  @keyframes xpFlash { 0% { opacity:0; transform: translateY(-10px) scale(0.8); } 50% { opacity:1; transform: translateY(-30px) scale(1.1); } 100% { opacity:0; transform: translateY(-50px); } }
+  @keyframes spin    { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-  /* DRAG SUBMIT BTN */
-  .drag-submit {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-top: 14px;
-    align-items: center;
-  }
+  .spin-emoji { display: inline-block; animation: spin 1.5s linear infinite; }
 
-  .section-title {
-    font-family: 'Orbitron', monospace;
-    font-size: 22px;
-    font-weight: 900;
-    margin-bottom: 6px;
-    line-height: 1.3;
-  }
+  .divider { border: none; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent); margin: 20px 0; }
 
-  .section-subtitle {
-    font-size: 15px;
-    color: var(--muted);
-    margin-bottom: 20px;
-    line-height: 1.5;
-  }
+  code { font-family: 'Courier New', monospace; background: rgba(255,255,255,0.07); border-radius: 5px; padding: 1px 6px; font-size: 0.9em; }
 </style>
 </head>
 <body>
 
 <!-- HUD -->
 <div class="hud">
-  <div class="hud-title">🐍 PYTHON QUEST</div>
-  <div class="hud-stat">
-    ⚡ XP: <span class="xp-val" id="xp-display">0</span>
-    <span class="xp-burst" id="xp-burst" style="display:none">+0</span>
-  </div>
+  <div class="hud-title">🔁 PYTHON QUEST · EP.5</div>
+  <div class="hud-stat">⚡ XP: <span class="xp-val" id="xp-display">0</span></div>
   <div class="hud-stat">❤️ <span class="lives-val" id="lives-display">♥♥♥</span></div>
   <div class="hud-stat">LVL <span class="level-val" id="level-display">1</span></div>
   <div style="width:100%">
@@ -760,16 +707,16 @@
 
   <!-- HERO -->
   <div class="hero">
-    <div class="snake-anim" style="font-size:60px;display:block;margin-bottom:10px;">🐍</div>
-    <h1>PYTHON QUEST</h1>
-    <div class="subtitle">Episode 4: Lists, Loops, Booleans & Operators</div>
+    <div class="episode">Episode 5 · Python Quest</div>
+    <div style="font-size:64px;margin-bottom:12px;" class="spin-emoji">🔁</div>
+    <h1>WHILE LOOPS</h1>
+    <div class="subtitle">break · continue · Infinite Loops · The Full Loop System</div>
 
     <div class="intro-box">
-      <strong style="color:var(--neon-yellow);">📡 INCOMING TRANSMISSION...</strong><br><br>
-      Welcome, Code Warrior! The evil <strong style="color:var(--neon-pink);">Bug Lord Syntaximus</strong> has corrupted the galaxy's data systems!
-      Only YOU can fix them by mastering <strong style="color:var(--neon-green);">Lists</strong>, <strong style="color:var(--neon-blue);">For Loops</strong>,
-      <strong style="color:var(--neon-purple);">Booleans</strong>, and <strong style="color:var(--neon-pink);">Operators</strong>.<br><br>
-      Complete missions to earn <span style="color:var(--neon-yellow);">⚡ XP</span>, survive <span style="color:var(--neon-pink);">❤️ 3 lives</span>, and unlock new powers!
+      <strong style="color:var(--neon-orange);">📡 INCOMING TRANSMISSION...</strong><br><br>
+      Code Warrior, the galaxy's <strong style="color:var(--neon-pink);">Reactor Core</strong> is overheating! It needs to keep running <em>until</em> the temperature drops below safe levels.
+      A <strong style="color:var(--neon-orange);">for loop</strong> won't help here — you don't know HOW MANY TIMES it needs to run. You need a <strong style="color:var(--neon-yellow);">WHILE loop</strong>: a loop that keeps going until a condition is met!<br><br>
+      Master <code>while</code>, <code>break</code>, and <code>continue</code> to save the reactor — and earn the <span style="color:var(--neon-yellow)">⚡ Loop Commander</span> badge!
     </div>
   </div>
 
@@ -777,22 +724,22 @@
   <div class="progress-map">
     <div class="prog-node">
       <div class="prog-circle current" id="node-1">1</div>
-      <div class="prog-label">LISTS</div>
+      <div class="prog-label">WHILE BASICS</div>
     </div>
     <div class="prog-line" id="line-1"></div>
     <div class="prog-node">
       <div class="prog-circle" id="node-2">2</div>
-      <div class="prog-label">FOR LOOPS</div>
+      <div class="prog-label">INFINITE LOOPS</div>
     </div>
     <div class="prog-line" id="line-2"></div>
     <div class="prog-node">
       <div class="prog-circle" id="node-3">3</div>
-      <div class="prog-label">BOOLEANS</div>
+      <div class="prog-label">BREAK</div>
     </div>
     <div class="prog-line" id="line-3"></div>
     <div class="prog-node">
       <div class="prog-circle" id="node-4">4</div>
-      <div class="prog-label">OPERATORS</div>
+      <div class="prog-label">CONTINUE</div>
     </div>
     <div class="prog-line" id="line-4"></div>
     <div class="prog-node">
@@ -801,479 +748,412 @@
     </div>
   </div>
 
-  <!-- ======================= SECTION 1: LISTS ======================= -->
+  <!-- ===================== SECTION 1: WHILE BASICS ===================== -->
   <div class="section active" id="sec-1">
 
-    <div class="level-badge blue">⚔️ Level 1 — The List Armory</div>
-
-    <div class="section-title">LISTS: Your Inventory System</div>
-    <div class="section-subtitle">Think of a list like your game inventory — it holds MULTIPLE items in one variable, in ORDER, and you can change it anytime!</div>
+    <div class="level-badge orange">⚔️ Level 1 — The While Engine</div>
+    <div class="section-title">WHILE LOOPS: Keep Going Until...</div>
+    <div class="section-subtitle">A while loop runs the same code OVER AND OVER as long as a condition is True. The moment the condition becomes False — it STOPS.</div>
 
     <div class="card">
-      <h2 style="color:var(--neon-blue);">📦 What is a List?</h2>
-      <p>A list stores many values inside <strong style="color:var(--neon-yellow);">square brackets [ ]</strong>, separated by commas. It remembers the order, and every item has an <strong>index</strong> starting at <code style="color:var(--neon-pink)">0</code>.</p>
+      <h2 style="color:var(--neon-orange);">🔵 The Blueprint</h2>
+      <p>The structure of a while loop is simple. It checks the condition BEFORE every single run:</p>
 
-      <div class="visual-list" style="margin-top:16px;">
-        <div class="list-slot"><div class="index">[0]</div><div class="value">"sword"</div></div>
-        <div class="list-slot"><div class="index">[1]</div><div class="value">"shield"</div></div>
-        <div class="list-slot"><div class="index">[2]</div><div class="value">"potion"</div></div>
-        <div class="list-slot"><div class="index">[3]</div><div class="value">"map"</div></div>
+      <div class="code-block" style="margin-top:14px;">
+        <span class="kw">while</span> <span class="var">condition_is_true</span>:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="cm"># This runs again and again...</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="cm"># ...until condition becomes False</span>
       </div>
 
-      <div class="code-label">Python Code</div>
-      <div class="code-block">
-        <span class="var">inventory</span> = [<span class="str">"sword"</span>, <span class="str">"shield"</span>, <span class="str">"potion"</span>, <span class="str">"map"</span>]<br>
-        <br>
-        <span class="cm"># Access items using index number</span><br>
-        <span class="fn">print</span>(<span class="var">inventory</span>[<span class="num">0</span>])  <span class="cm"># → sword</span><br>
-        <span class="fn">print</span>(<span class="var">inventory</span>[<span class="num">2</span>])  <span class="cm"># → potion</span><br>
-        <span class="fn">print</span>(<span class="var">inventory</span>[<span class="num">-1</span>]) <span class="cm"># → map (last item!)</span>
-      </div>
-
-      <div class="callout info">💡 <strong>-1</strong> always means the LAST item. Like looking from the back of the line!</div>
+      <div class="callout orange">🔁 Think of it like a game loop: <em>"WHILE the player is alive, keep playing."</em> When they die, the loop stops!</div>
     </div>
 
     <div class="card">
-      <h2 style="color:var(--neon-blue);">🛠️ List Superpowers</h2>
+      <h2 style="color:var(--neon-orange);">🎮 Real Example — Reactor Cooldown</h2>
+      <p>The reactor temperature starts at 100. Every loop, it drops by 15. The loop runs WHILE temp is above 40:</p>
 
       <div class="code-block">
-        <span class="var">inventory</span> = [<span class="str">"sword"</span>, <span class="str">"shield"</span>]<br><br>
-        <span class="cm"># Add an item to the END</span><br>
-        <span class="var">inventory</span>.<span class="fn">append</span>(<span class="str">"bow"</span>)<br>
-        <span class="cm"># → ["sword", "shield", "bow"]</span><br><br>
-        <span class="cm"># Remove an item</span><br>
-        <span class="var">inventory</span>.<span class="fn">remove</span>(<span class="str">"shield"</span>)<br>
-        <span class="cm"># → ["sword", "bow"]</span><br><br>
-        <span class="cm"># Find out how many items</span><br>
-        <span class="fn">print</span>(<span class="fn">len</span>(<span class="var">inventory</span>))  <span class="cm"># → 2</span><br><br>
-        <span class="cm"># Change an item</span><br>
-        <span class="var">inventory</span>[<span class="num">0</span>] = <span class="str">"magic sword"</span><br>
-        <span class="cm"># → ["magic sword", "bow"]</span>
+        <span class="var">temp</span> = <span class="num">100</span><br><br>
+        <span class="kw">while</span> <span class="var">temp</span> <span class="op">&gt;</span> <span class="num">40</span>:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">print</span>(<span class="str">"🔥 Temp:"</span>, <span class="var">temp</span>)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="var">temp</span> <span class="op">-=</span> <span class="num">15</span>  <span class="cm"># -= means "subtract 15 each time"</span><br><br>
+        <span class="fn">print</span>(<span class="str">"✅ Reactor safe! Final temp:"</span>, <span class="var">temp</span>)
+      </div>
+
+      <div class="callout info">💡 <code>temp -= 15</code> is shorthand for <code>temp = temp - 15</code>. Every loop, the variable gets smaller!</div>
+    </div>
+
+    <!-- INTERACTIVE WHILE DEMO -->
+    <div class="card">
+      <h2 style="color:var(--neon-orange);">▶️ Watch the Reactor Cool Down!</h2>
+      <p>Set the starting temperature and cooling speed, then hit PLAY:</p>
+
+      <div class="slider-row">
+        <label>🌡️ Start temp:</label>
+        <input type="range" id="start-temp" min="30" max="120" value="100" step="5" oninput="syncSliders()">
+        <span id="start-temp-val">100</span>
+      </div>
+      <div class="slider-row">
+        <label>❄️ Cool per step:</label>
+        <input type="range" id="cool-step" min="5" max="30" value="15" step="5" oninput="syncSliders()">
+        <span id="cool-step-val">15</span>
+      </div>
+      <div class="slider-row">
+        <label>🎯 Safe below:</label>
+        <input type="range" id="safe-temp" min="10" max="60" value="40" step="5" oninput="syncSliders()">
+        <span id="safe-temp-val">40</span>
+      </div>
+
+      <div style="margin: 12px 0;">
+        <div class="code-label">Generated Code</div>
+        <div class="code-block" id="live-code" style="font-size:13px;"></div>
+      </div>
+
+      <div class="while-track" id="while-track"></div>
+      <div class="loop-output" id="while-output">Hit PLAY to run the reactor simulation...</div>
+
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;">
+        <button class="btn btn-orange" id="while-play-btn" onclick="runWhileDemo()">▶️ PLAY</button>
+        <button class="btn btn-blue" onclick="resetWhileDemo()">↺ RESET</button>
       </div>
     </div>
 
     <!-- QUIZ 1 -->
     <div class="quiz-box">
-      <div class="quiz-question">🧠 QUIZ 1 — What does <code style="color:var(--neon-blue)">heroes[0]</code> return if <code style="color:var(--neon-green)">heroes = ["Aria", "Bex", "Cole"]</code>?</div>
+      <div class="quiz-question">🧠 QUIZ 1 — When does a <code>while</code> loop stop running?</div>
       <div class="quiz-options">
-        <button class="quiz-option" onclick="checkQuiz('q1',this,false)">A) "Bex"</button>
-        <button class="quiz-option" onclick="checkQuiz('q1',this,true)">B) "Aria"</button>
-        <button class="quiz-option" onclick="checkQuiz('q1',this,false)">C) "Cole"</button>
-        <button class="quiz-option" onclick="checkQuiz('q1',this,false)">D) 3</button>
+        <button class="quiz-option" onclick="checkQuiz('q1',this,false)">A) After exactly 10 runs</button>
+        <button class="quiz-option" onclick="checkQuiz('q1',this,true)">B) When the condition becomes False</button>
+        <button class="quiz-option" onclick="checkQuiz('q1',this,false)">C) When the variable hits 0</button>
+        <button class="quiz-option" onclick="checkQuiz('q1',this,false)">D) When you press STOP</button>
       </div>
       <div class="quiz-feedback" id="q1-feedback"></div>
     </div>
 
-    <!-- MISSION 1 -->
-    <div class="mission">
-      <p><strong style="color:var(--neon-yellow);">⚡ COMMAND #1 — Build Your Inventory!</strong><br><br>
-      You just landed on Planet Codex. Your character needs items to survive! Write code that:<br>
-      1️⃣ Creates a list called <code style="color:var(--neon-blue)">backpack</code> with 3 items you choose<br>
-      2️⃣ Uses <code style="color:var(--neon-green)">.append()</code> to add a 4th item<br>
-      3️⃣ Prints the LAST item using index <code style="color:var(--neon-pink)">-1</code>
-      </p>
-
-      <button class="hint-btn" onclick="toggleHint('h1')">💡 Hint</button>
-      <div class="hint-content" id="h1">
-        🔑 Start with: <code>backpack = ["item1", "item2", "item3"]</code><br>
-        Then add: <code>backpack.append("item4")</code><br>
-        For the last item, think: what index number always means "last"? (Psst… it's negative!)
-      </div>
-    </div>
-
     <!-- QUIZ 2 -->
     <div class="quiz-box">
-      <div class="quiz-question">🧠 QUIZ 2 — Your list is <code style="color:var(--neon-green)">powers = ["fire", "ice", "wind", "earth"]</code>. What is <code style="color:var(--neon-blue)">len(powers)</code>?</div>
+      <div class="quiz-question">🧠 QUIZ 2 — How many times does this loop run?<br>
+      <code style="color:var(--neon-blue)">count = 1<br>while count &lt;= 4:<br>&nbsp;&nbsp;&nbsp;&nbsp;count += 1</code></div>
       <div class="quiz-options">
-        <button class="quiz-option" onclick="checkQuiz('q2',this,false)">A) 0</button>
-        <button class="quiz-option" onclick="checkQuiz('q2',this,false)">B) 3</button>
-        <button class="quiz-option" onclick="checkQuiz('q2',this,true)">C) 4</button>
-        <button class="quiz-option" onclick="checkQuiz('q2',this,false)">D) "earth"</button>
+        <button class="quiz-option" onclick="checkQuiz('q2',this,false)">A) 1 time</button>
+        <button class="quiz-option" onclick="checkQuiz('q2',this,false)">B) 3 times</button>
+        <button class="quiz-option" onclick="checkQuiz('q2',this,true)">C) 4 times</button>
+        <button class="quiz-option" onclick="checkQuiz('q2',this,false)">D) 5 times</button>
       </div>
       <div class="quiz-feedback" id="q2-feedback"></div>
     </div>
 
+    <!-- MISSION 1 -->
+    <div class="mission">
+      <p><strong style="color:var(--neon-yellow);">⚡ COMMAND #1 — Fuel Counter!</strong><br><br>
+      The ship has <strong>50 units of fuel</strong>. Each engine cycle burns <strong>8 units</strong>. Write a <code>while</code> loop that:<br>
+      1️⃣ Prints the fuel level each cycle<br>
+      2️⃣ Subtracts 8 from the fuel each loop<br>
+      3️⃣ Stops when fuel drops to 0 or below<br>
+      4️⃣ After the loop, prints "⛽ Out of fuel!"
+      </p>
+      <button class="hint-btn" onclick="toggleHint('h1')">💡 Hint</button>
+      <div class="hint-content" id="h1">
+        🔑 Start with <code>fuel = 50</code>, then: <code>while fuel &gt; 0:</code><br>
+        Inside the loop: print fuel, then <code>fuel -= 8</code><br>
+        After the loop (no indent): <code>print("⛽ Out of fuel!")</code>
+      </div>
+    </div>
+
     <div class="nav-btns">
-      <button class="btn btn-green" onclick="goToSection(2)">🚀 NEXT LEVEL: FOR LOOPS →</button>
+      <button class="btn btn-orange" onclick="goToSection(2)">🚀 NEXT: INFINITE LOOPS →</button>
     </div>
   </div>
 
-  <!-- ======================= SECTION 2: FOR LOOPS ======================= -->
+  <!-- ===================== SECTION 2: INFINITE LOOPS ===================== -->
   <div class="section" id="sec-2">
 
-    <div class="level-badge green">🌀 Level 2 — The Loop Engine</div>
+    <div class="level-badge blue">☠️ Level 2 — The Infinite Trap</div>
+    <div class="section-title">INFINITE LOOPS: The Bug Lord's Trap</div>
+    <div class="section-subtitle">This is THE most dangerous mistake in while loops. If the condition NEVER becomes False, the loop runs FOREVER — crashing your program!</div>
 
-    <div class="section-title">FOR LOOPS: The Autopilot</div>
-    <div class="section-subtitle">Why do boring work 10 times when Python can do it for you? A FOR loop visits every item in a list — automatically!</div>
-
-    <div class="card">
-      <h2 style="color:var(--neon-green);">🔄 The Loop Blueprint</h2>
-      <p>A <code style="color:var(--neon-pink)">for</code> loop visits each item one at a time. It's like your character running through every room in a dungeon.</p>
-
-      <div class="code-block" style="margin-top:14px;">
-        <span class="kw">for</span> <span class="var">item</span> <span class="kw">in</span> <span class="var">my_list</span>:<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;<span class="cm"># 👆 "item" is a NICKNAME for each element</span><br>
-        &nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">print</span>(<span class="var">item</span>)
+    <div class="danger-box">
+      <p style="line-height:1.7;font-size:15px;">Look at this broken code. Can you see why it NEVER stops?</p>
+      <div class="code-block" style="border-left-color:var(--neon-pink);border-color:rgba(255,45,120,0.3);">
+        <span class="var">x</span> = <span class="num">1</span><br>
+        <span class="kw">while</span> <span class="var">x</span> <span class="op">&gt;</span> <span class="num">0</span>:  <span class="cm">  # x starts at 1 which IS > 0...</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">print</span>(<span class="str">"Help I'm stuck!"</span>)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="cm"># 💀 x NEVER changes! Loop runs forever!</span>
       </div>
-
-      <div class="callout warn">⚠️ The line after <code>for ... in ...:</code> MUST be indented (press Tab or 4 spaces). This tells Python "this code is INSIDE the loop"!</div>
-    </div>
-
-    <!-- INTERACTIVE LOOP DEMO -->
-    <div class="card">
-      <h2 style="color:var(--neon-green);">▶️ Watch it run! Hit PLAY</h2>
-      <p>Click PLAY to see how the loop visits each hero one by one:</p>
-
-      <div class="code-block" style="margin:12px 0 8px;">
-        <span class="var">heroes</span> = [<span class="str">"Aria"</span>, <span class="str">"Bex"</span>, <span class="str">"Cole"</span>, <span class="str">"Dex"</span>]<br>
-        <span class="kw">for</span> <span class="var">hero</span> <span class="kw">in</span> <span class="var">heroes</span>:<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">print</span>(<span class="str">"⚔️ Fighting:"</span>, <span class="var">hero</span>)
-      </div>
-
-      <div class="loop-demo" id="loop-items">
-        <div class="loop-item" id="li-0">"Aria"</div>
-        <div class="loop-item" id="li-1">"Bex"</div>
-        <div class="loop-item" id="li-2">"Cole"</div>
-        <div class="loop-item" id="li-3">"Dex"</div>
-      </div>
-
-      <div class="loop-output" id="loop-output">Press PLAY to run the loop...</div>
-
-      <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
-        <button class="btn btn-green" id="play-btn" onclick="runLoopDemo()">▶️ PLAY</button>
-        <button class="btn btn-blue" onclick="resetLoopDemo()">↺ RESET</button>
-      </div>
+      <div style="color:var(--neon-pink);font-weight:800;font-size:14px;margin-top:10px;">☠️ The fix: always make sure your loop variable CHANGES inside the loop so it can eventually make the condition False!</div>
     </div>
 
     <div class="card">
-      <h2 style="color:var(--neon-green);">📐 range() — The Number Generator</h2>
-      <p>What if you want to loop a specific number of times? Use <code style="color:var(--neon-blue)">range()</code>!</p>
+      <h2 style="color:var(--neon-blue);">✅ The Golden Rule</h2>
+      <p>Every while loop needs THREE things to be safe:</p>
 
-      <div class="code-block">
-        <span class="cm"># Count from 0 to 4</span><br>
-        <span class="kw">for</span> <span class="var">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="num">5</span>):<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">print</span>(<span class="var">i</span>)  <span class="cm"># prints: 0, 1, 2, 3, 4</span><br><br>
-        <span class="cm"># Count from 1 to 10</span><br>
-        <span class="kw">for</span> <span class="var">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="num">1</span>, <span class="num">11</span>):<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">print</span>(<span class="var">i</span>)  <span class="cm"># prints: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10</span>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:14px 0;">
+        <div style="background:rgba(57,255,20,0.06);border:1px solid rgba(57,255,20,0.2);border-radius:10px;padding:14px;">
+          <div style="font-family:'Orbitron',monospace;font-size:12px;color:var(--neon-green);margin-bottom:6px;">1 — START</div>
+          <div style="font-size:13px;color:var(--muted);line-height:1.6;">Set your variable BEFORE the loop begins.</div>
+          <div class="code-block" style="margin-top:8px;font-size:12px;border-left-color:var(--neon-green);"><span class="var">count</span> = <span class="num">0</span></div>
+        </div>
+        <div style="background:rgba(255,140,0,0.06);border:1px solid rgba(255,140,0,0.2);border-radius:10px;padding:14px;">
+          <div style="font-family:'Orbitron',monospace;font-size:12px;color:var(--neon-orange);margin-bottom:6px;">2 — CONDITION</div>
+          <div style="font-size:13px;color:var(--muted);line-height:1.6;">Tell Python WHEN to keep looping.</div>
+          <div class="code-block" style="margin-top:8px;font-size:12px;border-left-color:var(--neon-orange);"><span class="kw">while</span> <span class="var">count</span> <span class="op">&lt;</span> <span class="num">5</span>:</div>
+        </div>
+        <div style="background:rgba(0,245,255,0.05);border:1px solid rgba(0,245,255,0.2);border-radius:10px;padding:14px;">
+          <div style="font-family:'Orbitron',monospace;font-size:12px;color:var(--neon-blue);margin-bottom:6px;">3 — CHANGE</div>
+          <div style="font-size:13px;color:var(--muted);line-height:1.6;">Update the variable so the loop can END.</div>
+          <div class="code-block" style="margin-top:8px;font-size:12px;border-left-color:var(--neon-blue);">&nbsp;&nbsp;&nbsp;&nbsp;<span class="var">count</span> <span class="op">+=</span> <span class="num">1</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DRAG MISSION — Spot the infinite loop -->
+    <div class="mission">
+      <p><strong style="color:var(--neon-yellow);">⚡ COMMAND #2 — Drag to Fix the Infinite Loop!</strong><br><br>
+      The reactor control code is broken — it loops forever! Drag the missing fix line into the correct drop zone to save the reactor.</p>
+
+      <div class="code-block" style="font-size:13px;line-height:2;">
+        <span class="var">energy</span> = <span class="num">100</span><br>
+        <span class="kw">while</span> <span class="var">energy</span> <span class="op">&gt;</span> <span class="num">0</span>:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">print</span>(<span class="str">"Energy:"</span>, <span class="var">energy</span>)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:var(--neon-pink);"># ← THE FIX GOES HERE</span>
       </div>
 
-      <div class="callout tip">🟢 <code>range(5)</code> gives you 0,1,2,3,4 — the end number is NOT included!</div>
+      <p style="font-size:13px;color:var(--muted);margin-top:10px;">Pick the correct fix and drag it into the box:</p>
+
+      <div class="drag-bank" id="fix-bank">
+        <div class="drag-chip" id="fix-a" draggable="true" ondragstart="fixDragStart(event,'fix-a')">print("done")</div>
+        <div class="drag-chip" id="fix-b" draggable="true" ondragstart="fixDragStart(event,'fix-b')">energy -= 20</div>
+        <div class="drag-chip" id="fix-c" draggable="true" ondragstart="fixDragStart(event,'fix-c')">energy = 100</div>
+        <div class="drag-chip" id="fix-d" draggable="true" ondragstart="fixDragStart(event,'fix-d')">while energy > 0:</div>
+      </div>
+
+      <div class="drop-zone" id="fix-drop" ondrop="fixDrop(event)" ondragover="fixAllowDrop(event)">
+        <span class="placeholder">Drop the fix here...</span>
+      </div>
+
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;">
+        <button class="btn btn-blue" onclick="checkFixDrop()">✅ CHECK FIX</button>
+        <button class="btn" style="background:rgba(255,255,255,0.07);color:var(--muted);border:1px solid rgba(255,255,255,0.1);" onclick="resetFixDrop()">↺ Reset</button>
+      </div>
+      <div id="fix-feedback" style="display:none;margin-top:12px;font-size:14px;font-weight:800;line-height:1.5;"></div>
+
+      <button class="hint-btn" onclick="toggleHint('h2')">💡 Hint</button>
+      <div class="hint-content" id="h2">
+        🔑 The loop checks <code>energy &gt; 0</code>. For the loop to STOP, energy needs to eventually become 0 or less. Which option does that?
+      </div>
     </div>
 
     <!-- QUIZ 3 -->
     <div class="quiz-box">
-      <div class="quiz-question">🧠 QUIZ 3 — How many times does this loop run?<br><code style="color:var(--neon-blue)">for x in range(3):</code></div>
+      <div class="quiz-question">🧠 QUIZ 3 — Which code creates an INFINITE loop?</div>
       <div class="quiz-options">
-        <button class="quiz-option" onclick="checkQuiz('q3',this,false)">A) 1 time</button>
-        <button class="quiz-option" onclick="checkQuiz('q3',this,false)">B) 2 times</button>
-        <button class="quiz-option" onclick="checkQuiz('q3',this,true)">C) 3 times</button>
-        <button class="quiz-option" onclick="checkQuiz('q3',this,false)">D) 4 times</button>
+        <button class="quiz-option" onclick="checkQuiz('q3',this,false)">A) <code>n=5; while n&gt;0: n-=1</code></button>
+        <button class="quiz-option" onclick="checkQuiz('q3',this,true)">B) <code>n=5; while n&gt;0: print(n)</code></button>
+        <button class="quiz-option" onclick="checkQuiz('q3',this,false)">C) <code>n=1; while n&lt;10: n+=2</code></button>
+        <button class="quiz-option" onclick="checkQuiz('q3',this,false)">D) <code>n=0; while n&lt;3: n+=1</code></button>
       </div>
       <div class="quiz-feedback" id="q3-feedback"></div>
     </div>
 
-    <!-- DRAG MISSION -->
-    <div class="mission">
-      <p><strong style="color:var(--neon-yellow);">⚡ COMMAND #2 — Drag to Build the Loop!</strong><br><br>
-      Drag the code pieces into the correct order to loop through a list of planets and print each one.</p>
+    <div class="nav-btns">
+      <button class="btn btn-blue" onclick="goToSection(1)">← Back</button>
+      <button class="btn btn-orange" onclick="goToSection(3)">🚀 NEXT: BREAK →</button>
+    </div>
+  </div>
 
-      <div style="display:flex; flex-wrap:wrap; gap:8px; margin:14px 0; padding:12px; background:rgba(255,255,255,0.03); border-radius:10px;">
-        <div class="drag-chip" draggable="true" id="chip-a" ondragstart="dragStart(event,'chip-a')">for planet in planets:</div>
-        <div class="drag-chip" draggable="true" id="chip-b" ondragstart="dragStart(event,'chip-b')">    print(planet)</div>
-        <div class="drag-chip" draggable="true" id="chip-c" ondragstart="dragStart(event,'chip-c')">planets = ["Mars", "Venus", "Jupiter"]</div>
+  <!-- ===================== SECTION 3: BREAK ===================== -->
+  <div class="section" id="sec-3">
+
+    <div class="level-badge pink">💥 Level 3 — The Break Weapon</div>
+    <div class="section-title">BREAK: Emergency Stop!</div>
+    <div class="section-subtitle"><code>break</code> is like a big red STOP button. It immediately exits the loop — even if the condition is still True!</div>
+
+    <div class="card">
+      <h2 style="color:var(--neon-pink);">💥 How break Works</h2>
+      <p>Sometimes you're looping and something happens that means: <em>"Stop everything right now!"</em> That's when you use <code>break</code>.</p>
+
+      <div class="code-block">
+        <span class="var">hp</span> = <span class="num">100</span><br>
+        <span class="var">round_num</span> = <span class="num">0</span><br><br>
+        <span class="kw">while</span> <span class="kw">True</span>:  <span class="cm">  # Loop runs "forever"... until break!</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="var">round_num</span> <span class="op">+=</span> <span class="num">1</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="var">hp</span> <span class="op">-=</span> <span class="num">30</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">print</span>(<span class="str">f"Round {round_num} — HP: {hp}"</span>)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">if</span> <span class="var">hp</span> <span class="op">&lt;=</span> <span class="num">0</span>:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">print</span>(<span class="str">"💀 Player defeated!"</span>)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="brk">break</span>  <span class="cm"># ← EXITS the loop immediately!</span>
       </div>
 
-      <p style="font-size:13px;color:var(--muted);margin-bottom:8px;">🎯 DROP them here in the right order (line 1 → line 2 → line 3):</p>
+      <div class="callout danger">⚠️ <code>while True:</code> is an intentional infinite loop! It runs forever UNTIL a <code>break</code> fires. This is a very common pattern in games and menus!</div>
+    </div>
 
-      <div class="drag-area" id="drop-zone" ondrop="dropHere(event)" ondragover="allowDrop(event)">
-        <span style="color:var(--muted);font-size:13px;">Drop code here...</span>
+    <!-- INTERACTIVE BREAK DEMO -->
+    <div class="card">
+      <h2 style="color:var(--neon-pink);">🎮 Break Battle Simulator</h2>
+      <p>Choose enemy HP and damage per hit. Watch break fire when HP hits 0:</p>
+
+      <div class="slider-row">
+        <label>👾 Enemy HP:</label>
+        <input type="range" id="enemy-hp" min="30" max="150" value="90" step="10" oninput="syncBattleSliders()">
+        <span id="enemy-hp-val">90</span>
+      </div>
+      <div class="slider-row">
+        <label>⚔️ Damage/hit:</label>
+        <input type="range" id="damage" min="10" max="50" value="25" step="5" oninput="syncBattleSliders()">
+        <span id="damage-val">25</span>
       </div>
 
-      <div class="drag-submit">
-        <button class="btn btn-blue" onclick="checkDragOrder()">✅ CHECK ORDER</button>
-        <button class="btn" style="background:rgba(255,255,255,0.07);color:var(--muted);border:1px solid rgba(255,255,255,0.1);" onclick="resetDrag()">↺ Reset</button>
-      </div>
+      <div class="code-block" id="battle-code" style="font-size:13px;margin:12px 0;"></div>
 
-      <div id="drag-feedback" style="margin-top:10px;display:none;font-size:14px;font-weight:800;line-height:1.5;"></div>
+      <div class="loop-output" id="battle-output" style="border-left-color:var(--neon-pink);">Hit PLAY to start the battle...</div>
 
-      <button class="hint-btn" onclick="toggleHint('h2')">💡 Hint</button>
-      <div class="hint-content" id="h2">
-        🔑 Think about it step by step: you need to CREATE the list FIRST, then LOOP through it, then tell it WHAT to do inside the loop. Which line does which?
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;">
+        <button class="btn btn-pink" id="battle-play-btn" onclick="runBattleDemo()">⚔️ FIGHT!</button>
+        <button class="btn btn-blue" onclick="resetBattleDemo()">↺ RESET</button>
       </div>
     </div>
 
     <!-- QUIZ 4 -->
     <div class="quiz-box">
-      <div class="quiz-question">🧠 QUIZ 4 — What will this print?<br>
-      <code style="color:var(--neon-blue)">items = [10, 20, 30]<br>for n in items:<br>&nbsp;&nbsp;&nbsp;&nbsp;print(n * 2)</code></div>
+      <div class="quiz-question">🧠 QUIZ 4 — What does <code>break</code> do?</div>
       <div class="quiz-options">
-        <button class="quiz-option" onclick="checkQuiz('q4',this,false)">A) 10, 20, 30</button>
-        <button class="quiz-option" onclick="checkQuiz('q4',this,true)">B) 20, 40, 60</button>
-        <button class="quiz-option" onclick="checkQuiz('q4',this,false)">C) 60</button>
-        <button class="quiz-option" onclick="checkQuiz('q4',this,false)">D) Error!</button>
+        <button class="quiz-option" onclick="checkQuiz('q4',this,false)">A) Pauses the loop for 1 second</button>
+        <button class="quiz-option" onclick="checkQuiz('q4',this,true)">B) Immediately exits the loop</button>
+        <button class="quiz-option" onclick="checkQuiz('q4',this,false)">C) Skips to the next loop run</button>
+        <button class="quiz-option" onclick="checkQuiz('q4',this,false)">D) Resets the loop variable</button>
       </div>
       <div class="quiz-feedback" id="q4-feedback"></div>
     </div>
 
-    <div class="nav-btns">
-      <button class="btn btn-blue" onclick="goToSection(1)">← Back</button>
-      <button class="btn btn-green" onclick="goToSection(3)">🚀 NEXT LEVEL: BOOLEANS →</button>
-    </div>
-  </div>
-
-  <!-- ======================= SECTION 3: BOOLEANS ======================= -->
-  <div class="section" id="sec-3">
-
-    <div class="level-badge pink">💡 Level 3 — The Truth Machine</div>
-
-    <div class="section-title">BOOLEANS: True or False</div>
-    <div class="section-subtitle">Every decision in Python is either TRUE or FALSE. Booleans are the on/off switches that control your code!</div>
-
-    <div class="card">
-      <h2 style="color:var(--neon-pink);">🔵🔴 The Two Power States</h2>
-      <p>Python only has TWO boolean values. They ALWAYS start with a capital letter:</p>
-
-      <div style="display:flex;gap:16px;flex-wrap:wrap;margin:16px 0;">
-        <div style="flex:1;min-width:160px;text-align:center;">
-          <div class="bool-display bool-true">True</div>
-          <div style="font-size:13px;color:var(--muted);margin-top:8px;">✅ YES / ON / GO</div>
-        </div>
-        <div style="flex:1;min-width:160px;text-align:center;">
-          <div class="bool-display bool-false">False</div>
-          <div style="font-size:13px;color:var(--muted);margin-top:8px;">❌ NO / OFF / STOP</div>
-        </div>
-      </div>
-
-      <div class="code-block">
-        <span class="var">is_alive</span> = <span class="kw">True</span><br>
-        <span class="var">has_ammo</span> = <span class="kw">False</span><br>
-        <span class="var">game_over</span> = <span class="kw">False</span><br><br>
-        <span class="fn">print</span>(<span class="var">is_alive</span>)   <span class="cm"># → True</span><br>
-        <span class="fn">print</span>(<span class="fn">type</span>(<span class="var">is_alive</span>)) <span class="cm"># → &lt;class 'bool'&gt;</span>
-      </div>
-    </div>
-
-    <!-- INTERACTIVE BOOL DEMO -->
-    <div class="card">
-      <h2 style="color:var(--neon-pink);">🎮 Bool Switch — Press the buttons!</h2>
-      <p>A boolean is like a light switch. Click to flip it and see what happens in the code:</p>
-
-      <div style="display:flex;gap:16px;flex-wrap:wrap;margin:16px 0;">
-        <div style="flex:1;min-width:140px;">
-          <div style="font-size:13px;color:var(--muted);margin-bottom:8px;font-weight:700;">is_alive</div>
-          <div class="bool-display bool-true" id="bool-alive" style="cursor:pointer;display:block;text-align:center;" onclick="flipBool('alive')">True</div>
-        </div>
-        <div style="flex:1;min-width:140px;">
-          <div style="font-size:13px;color:var(--muted);margin-bottom:8px;font-weight:700;">has_weapon</div>
-          <div class="bool-display bool-true" id="bool-weapon" style="cursor:pointer;display:block;text-align:center;" onclick="flipBool('weapon')">True</div>
-        </div>
-      </div>
-
-      <div style="background:#06060f;border-radius:10px;padding:14px 16px;font-family:'Courier New',monospace;font-size:14px;line-height:1.8;">
-        <div id="bool-result" style="color:var(--neon-green);">🟢 Character is ready to fight!</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <h2 style="color:var(--neon-pink);">🧪 if/else — Using Booleans to Decide</h2>
-      <p>Booleans really shine inside <code style="color:var(--neon-yellow)">if</code> statements!</p>
-
-      <div class="code-block">
-        <span class="var">hp</span> = <span class="num">80</span><br>
-        <span class="var">is_shielded</span> = <span class="kw">True</span><br><br>
-        <span class="kw">if</span> <span class="var">is_shielded</span>:<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">print</span>(<span class="str">"🛡️ Shield blocks the attack!"</span>)<br>
-        <span class="kw">else</span>:<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">print</span>(<span class="str">"💥 You take damage!"</span>)<br><br>
-        <span class="cm"># Output: 🛡️ Shield blocks the attack!</span>
-      </div>
-
-      <div class="callout info">💡 <code>if True:</code> always runs. <code>if False:</code> always skips to <code>else</code>!</div>
-    </div>
-
     <!-- QUIZ 5 -->
     <div class="quiz-box">
-      <div class="quiz-question">🧠 QUIZ 5 — What will print?<br>
-      <code style="color:var(--neon-blue)">door_open = False<br>if door_open:<br>&nbsp;&nbsp;&nbsp;&nbsp;print("Enter!")<br>else:<br>&nbsp;&nbsp;&nbsp;&nbsp;print("Door is locked!")</code></div>
+      <div class="quiz-question">🧠 QUIZ 5 — What will this print?<br>
+      <code style="color:var(--neon-blue)">i = 0<br>while i &lt; 10:<br>&nbsp;&nbsp;&nbsp;&nbsp;if i == 3:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break<br>&nbsp;&nbsp;&nbsp;&nbsp;print(i)<br>&nbsp;&nbsp;&nbsp;&nbsp;i += 1</code></div>
       <div class="quiz-options">
-        <button class="quiz-option" onclick="checkQuiz('q5',this,false)">A) Enter!</button>
-        <button class="quiz-option" onclick="checkQuiz('q5',this,true)">B) Door is locked!</button>
-        <button class="quiz-option" onclick="checkQuiz('q5',this,false)">C) Nothing</button>
-        <button class="quiz-option" onclick="checkQuiz('q5',this,false)">D) True</button>
+        <button class="quiz-option" onclick="checkQuiz('q5',this,false)">A) 0, 1, 2, 3</button>
+        <button class="quiz-option" onclick="checkQuiz('q5',this,true)">B) 0, 1, 2</button>
+        <button class="quiz-option" onclick="checkQuiz('q5',this,false)">C) 3, 4, 5, 6, 7, 8, 9</button>
+        <button class="quiz-option" onclick="checkQuiz('q5',this,false)">D) Nothing</button>
       </div>
       <div class="quiz-feedback" id="q5-feedback"></div>
     </div>
 
     <!-- MISSION 3 -->
     <div class="mission">
-      <p><strong style="color:var(--neon-yellow);">⚡ COMMAND #3 — The Security System!</strong><br><br>
-      The space station has a 2-step security check. Write code that:<br>
-      1️⃣ Creates <code style="color:var(--neon-blue)">has_keycard</code> = True and <code style="color:var(--neon-blue)">alarm_triggered</code> = False<br>
-      2️⃣ Uses <code style="color:var(--neon-pink)">if</code> to check if has_keycard is True<br>
-      3️⃣ Prints "Access granted! 🚀" if True, "ACCESS DENIED! 🚨" if False
+      <p><strong style="color:var(--neon-yellow);">⚡ COMMAND #3 — Security Scanner!</strong><br><br>
+      The space station scans cargo boxes one by one. Write code that:<br>
+      1️⃣ Creates a list: <code>cargo = ["food", "tools", "weapons", "medicine", "fuel"]</code><br>
+      2️⃣ Uses <code>while</code> with an index variable starting at 0<br>
+      3️⃣ Prints each item with "Scanning: item"<br>
+      4️⃣ If the item is <code>"weapons"</code>, prints "🚨 ALERT!" and uses <code>break</code>
       </p>
-
       <button class="hint-btn" onclick="toggleHint('h3')">💡 Hint</button>
       <div class="hint-content" id="h3">
-        🔑 Remember: <code>if has_keycard:</code> is the same as <code>if has_keycard == True:</code> — Python understands both! Then use <code>else:</code> for the other case.
+        🔑 Use <code>i = 0</code> as your index. Loop with <code>while i &lt; len(cargo):</code><br>
+        Inside, check: <code>if cargo[i] == "weapons":</code><br>
+        Don't forget to increment: <code>i += 1</code> at the end of each loop (but BEFORE the break checks)!
       </div>
     </div>
 
     <div class="nav-btns">
       <button class="btn btn-blue" onclick="goToSection(2)">← Back</button>
-      <button class="btn btn-green" onclick="goToSection(4)">🚀 NEXT LEVEL: OPERATORS →</button>
+      <button class="btn btn-orange" onclick="goToSection(4)">🚀 NEXT: CONTINUE →</button>
     </div>
   </div>
 
-  <!-- ======================= SECTION 4: OPERATORS ======================= -->
+  <!-- ===================== SECTION 4: CONTINUE ===================== -->
   <div class="section" id="sec-4">
 
-    <div class="level-badge yellow">⚡ Level 4 — Operator Arsenal</div>
+    <div class="level-badge yellow">⏭️ Level 4 — The Skip Maneuver</div>
+    <div class="section-title">CONTINUE: Skip This Round!</div>
+    <div class="section-subtitle"><code>continue</code> is different from <code>break</code>. Instead of stopping everything, it just skips the rest of the current loop run and jumps straight to the NEXT one.</div>
 
-    <div class="section-title">OPERATORS: The Weapon System</div>
-    <div class="section-subtitle">Operators are tools that compare, combine, and flip boolean values. Master these and you can control EVERY decision in your program!</div>
-
-    <div class="card">
-      <h2 style="color:var(--neon-yellow);">🎯 Comparison Operators</h2>
-      <p>These operators COMPARE two values and return <span style="color:var(--neon-green)">True</span> or <span style="color:var(--neon-pink)">False</span>:</p>
-
-      <table class="op-table">
-        <tr><th>Symbol</th><th>Name</th><th>Example</th><th>Result</th></tr>
-        <tr>
-          <td class="op-sym">==</td>
-          <td class="op-name">Equal to</td>
-          <td class="op-example">5 == 5</td>
-          <td class="op-result-t">True ✅</td>
-        </tr>
-        <tr>
-          <td class="op-sym">!=</td>
-          <td class="op-name">NOT equal</td>
-          <td class="op-example">5 != 3</td>
-          <td class="op-result-t">True ✅</td>
-        </tr>
-        <tr>
-          <td class="op-sym">&gt;</td>
-          <td class="op-name">Greater than</td>
-          <td class="op-example">10 &gt; 7</td>
-          <td class="op-result-t">True ✅</td>
-        </tr>
-        <tr>
-          <td class="op-sym">&lt;</td>
-          <td class="op-name">Less than</td>
-          <td class="op-example">3 &lt; 1</td>
-          <td class="op-result-f">False ❌</td>
-        </tr>
-        <tr>
-          <td class="op-sym">&gt;=</td>
-          <td class="op-name">Greater or equal</td>
-          <td class="op-example">5 &gt;= 5</td>
-          <td class="op-result-t">True ✅</td>
-        </tr>
-        <tr>
-          <td class="op-sym">&lt;=</td>
-          <td class="op-name">Less or equal</td>
-          <td class="op-example">4 &lt;= 3</td>
-          <td class="op-result-f">False ❌</td>
-        </tr>
-      </table>
-
-      <div class="callout warn">⚠️ DON'T mix up <code>=</code> (assigns a value) with <code>==</code> (compares two values)! This is the #1 beginner mistake!</div>
-    </div>
-
-    <div class="card">
-      <h2 style="color:var(--neon-yellow);">🔗 Logical Operators — and / or / not</h2>
-      <p>These operators combine booleans together:</p>
-
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:14px 0;">
-
-        <div style="background:rgba(57,255,20,0.06);border:1px solid rgba(57,255,20,0.2);border-radius:10px;padding:14px;">
-          <div style="font-family:'Orbitron',monospace;font-size:13px;color:var(--neon-green);margin-bottom:8px;">AND</div>
-          <div style="font-size:13px;line-height:1.6;color:var(--muted);">BOTH must be True to get True.<br>Like needing a KEY and a CODE to open a vault.</div>
-          <div class="code-block" style="margin-top:10px;font-size:12px;">
-            <span class="kw">True</span> <span class="kw">and</span> <span class="kw">True</span> <span class="op">→</span> <span class="out">True</span><br>
-            <span class="kw">True</span> <span class="kw">and</span> <span class="kw">False</span> <span class="op">→</span> <span class="op">False</span>
-          </div>
-        </div>
-
-        <div style="background:rgba(0,245,255,0.05);border:1px solid rgba(0,245,255,0.2);border-radius:10px;padding:14px;">
-          <div style="font-family:'Orbitron',monospace;font-size:13px;color:var(--neon-blue);margin-bottom:8px;">OR</div>
-          <div style="font-size:13px;line-height:1.6;color:var(--muted);">At LEAST ONE must be True.<br>Like needing a phone OR a laptop to get online.</div>
-          <div class="code-block" style="margin-top:10px;font-size:12px;">
-            <span class="kw">True</span> <span class="kw">or</span> <span class="kw">False</span> <span class="op">→</span> <span class="out">True</span><br>
-            <span class="kw">False</span> <span class="kw">or</span> <span class="kw">False</span> <span class="op">→</span> <span class="op">False</span>
-          </div>
-        </div>
-
-        <div style="background:rgba(255,45,120,0.05);border:1px solid rgba(255,45,120,0.2);border-radius:10px;padding:14px;">
-          <div style="font-family:'Orbitron',monospace;font-size:13px;color:var(--neon-pink);margin-bottom:8px;">NOT</div>
-          <div style="font-size:13px;line-height:1.6;color:var(--muted);">FLIPS the boolean.<br>True becomes False, False becomes True!</div>
-          <div class="code-block" style="margin-top:10px;font-size:12px;">
-            <span class="kw">not</span> <span class="kw">True</span> <span class="op">→</span> <span class="op">False</span><br>
-            <span class="kw">not</span> <span class="kw">False</span> <span class="op">→</span> <span class="out">True</span>
-          </div>
-        </div>
+    <div class="bc-grid">
+      <div class="bc-card brk">
+        <div class="bc-title brk">💥 break</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.6;">Exits the loop COMPLETELY. No more runs after this.</div>
+        <div style="margin-top:8px;font-size:22px;">🚪 → OUT</div>
+      </div>
+      <div class="bc-card cnt">
+        <div class="bc-title cnt">⏭️ continue</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.6;">Skips the rest of THIS run only. Next run still happens.</div>
+        <div style="margin-top:8px;font-size:22px;">🔄 → NEXT</div>
       </div>
     </div>
 
-    <!-- INTERACTIVE OPERATOR TESTER -->
     <div class="card">
-      <h2 style="color:var(--neon-yellow);">🔬 OPERATOR LAB — Test it yourself!</h2>
-      <p>Move the sliders and see what the operators return in real time:</p>
+      <h2 style="color:var(--neon-yellow);">⏭️ continue in Action</h2>
+      <p>Print all numbers 1–8, but SKIP number 4 and 6:</p>
 
-      <div style="display:flex;gap:16px;flex-wrap:wrap;margin:16px 0;align-items:flex-end;">
-        <div style="flex:1;min-width:120px;">
-          <label style="font-size:12px;color:var(--muted);font-weight:700;display:block;margin-bottom:6px;">Value A: <span id="val-a-display" style="color:var(--neon-yellow);font-family:'Orbitron',monospace;">5</span></label>
-          <input type="range" min="0" max="10" value="5" id="val-a" oninput="updateOpLab()" style="width:100%;">
-        </div>
-        <div style="flex:1;min-width:120px;">
-          <label style="font-size:12px;color:var(--muted);font-weight:700;display:block;margin-bottom:6px;">Value B: <span id="val-b-display" style="color:var(--neon-yellow);font-family:'Orbitron',monospace;">3</span></label>
-          <input type="range" min="0" max="10" value="3" id="val-b" oninput="updateOpLab()" style="width:100%;">
-        </div>
+      <div class="code-block">
+        <span class="var">n</span> = <span class="num">0</span><br>
+        <span class="kw">while</span> <span class="var">n</span> <span class="op">&lt;</span> <span class="num">8</span>:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="var">n</span> <span class="op">+=</span> <span class="num">1</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">if</span> <span class="var">n</span> <span class="op">==</span> <span class="num">4</span> <span class="kw">or</span> <span class="var">n</span> <span class="op">==</span> <span class="num">6</span>:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cnt">continue</span>  <span class="cm"># ← skip print, jump to next run</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">print</span>(<span class="var">n</span>)<br><br>
+        <span class="cm"># Output: 1, 2, 3, 5, 7, 8</span><br>
+        <span class="cm"># (4 and 6 are skipped!)</span>
       </div>
 
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;" id="op-results">
+      <div class="callout tip">🟢 With <code>continue</code>, code BELOW it in the loop is skipped. That's why <code>print(n)</code> never runs for 4 and 6!</div>
+    </div>
+
+    <!-- INTERACTIVE CONTINUE DEMO -->
+    <div class="card">
+      <h2 style="color:var(--neon-yellow);">🎮 Skip Selector — Live Demo</h2>
+      <p>Loop from 1 to 10. Choose which numbers to SKIP with <code>continue</code>:</p>
+
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin:14px 0;" id="skip-btns"></div>
+
+      <div class="code-block" id="skip-code" style="font-size:13px;margin:12px 0;"></div>
+      <div class="loop-output" id="skip-output" style="border-left-color:var(--neon-yellow);color:var(--neon-yellow);">Select numbers to skip, then hit RUN</div>
+
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;">
+        <button class="btn btn-yellow" onclick="runSkipDemo()">▶️ RUN</button>
+        <button class="btn btn-blue" onclick="resetSkipDemo()">↺ RESET</button>
       </div>
     </div>
 
     <!-- QUIZ 6 -->
     <div class="quiz-box">
-      <div class="quiz-question">🧠 QUIZ 6 — What does this return?<br>
-      <code style="color:var(--neon-blue)">hp = 30<br>max_hp = 100<br>print(hp >= 50 and max_hp == 100)</code></div>
+      <div class="quiz-question">🧠 QUIZ 6 — What is the difference between <code>break</code> and <code>continue</code>?</div>
       <div class="quiz-options">
-        <button class="quiz-option" onclick="checkQuiz('q6',this,false)">A) True</button>
-        <button class="quiz-option" onclick="checkQuiz('q6',this,true)">B) False</button>
-        <button class="quiz-option" onclick="checkQuiz('q6',this,false)">C) 30</button>
-        <button class="quiz-option" onclick="checkQuiz('q6',this,false)">D) Error</button>
+        <button class="quiz-option" onclick="checkQuiz('q6',this,false)">A) They do the same thing</button>
+        <button class="quiz-option" onclick="checkQuiz('q6',this,false)">B) break skips one round; continue exits</button>
+        <button class="quiz-option" onclick="checkQuiz('q6',this,true)">C) break exits the loop; continue skips to next run</button>
+        <button class="quiz-option" onclick="checkQuiz('q6',this,false)">D) continue is only for for loops</button>
       </div>
       <div class="quiz-feedback" id="q6-feedback"></div>
     </div>
 
     <!-- QUIZ 7 -->
     <div class="quiz-box">
-      <div class="quiz-question">🧠 QUIZ 7 — Which operator means "IS NOT EQUAL TO"?</div>
+      <div class="quiz-question">🧠 QUIZ 7 — What does this print?<br>
+      <code style="color:var(--neon-blue)">i = 0<br>while i &lt; 5:<br>&nbsp;&nbsp;&nbsp;&nbsp;i += 1<br>&nbsp;&nbsp;&nbsp;&nbsp;if i == 2:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;continue<br>&nbsp;&nbsp;&nbsp;&nbsp;print(i)</code></div>
       <div class="quiz-options">
-        <button class="quiz-option" onclick="checkQuiz('q7',this,false)">A) ==</button>
-        <button class="quiz-option" onclick="checkQuiz('q7',this,false)">B) =</button>
-        <button class="quiz-option" onclick="checkQuiz('q7',this,true)">C) !=</button>
-        <button class="quiz-option" onclick="checkQuiz('q7',this,false)">D) !</button>
+        <button class="quiz-option" onclick="checkQuiz('q7',this,false)">A) 1, 2, 3, 4, 5</button>
+        <button class="quiz-option" onclick="checkQuiz('q7',this,true)">B) 1, 3, 4, 5</button>
+        <button class="quiz-option" onclick="checkQuiz('q7',this,false)">C) 1, 2</button>
+        <button class="quiz-option" onclick="checkQuiz('q7',this,false)">D) 2, 3, 4, 5</button>
       </div>
       <div class="quiz-feedback" id="q7-feedback"></div>
     </div>
 
     <!-- MISSION 4 -->
     <div class="mission">
-      <p><strong style="color:var(--neon-yellow);">⚡ COMMAND #4 — The Force Field!</strong><br><br>
-      The force field opens only if:<br>
-      • The player has MORE than 50 HP, AND<br>
-      • The enemy count is LESS than 3<br><br>
-      Write code with <code style="color:var(--neon-blue)">hp = 75</code> and <code style="color:var(--neon-blue)">enemies = 2</code>, then use <code style="color:var(--neon-pink)">and</code> to check BOTH conditions.
+      <p><strong style="color:var(--neon-yellow);">⚡ COMMAND #4 — Power Grid Filter!</strong><br><br>
+      The power grid has zones numbered 1–10. Zones 3, 5, and 8 are damaged — skip them! Write code that:<br>
+      1️⃣ Uses <code>while</code> to count from 1 to 10<br>
+      2️⃣ Uses <code>continue</code> to skip zones 3, 5, and 8<br>
+      3️⃣ Prints "Zone X — ONLINE ✅" for all others
       </p>
-
       <button class="hint-btn" onclick="toggleHint('h4')">💡 Hint</button>
       <div class="hint-content" id="h4">
-        🔑 You need TWO comparisons joined with <code>and</code>: <code>if hp > 50 and enemies &lt; 3:</code><br>
-        If both are True, the <code>and</code> returns True. If even ONE is False, it's False!
+        🔑 Start: <code>zone = 0</code>, loop: <code>while zone &lt; 10:</code><br>
+        First thing inside the loop: <code>zone += 1</code><br>
+        Then check: <code>if zone == 3 or zone == 5 or zone == 8: continue</code><br>
+        After the if, print the zone!
       </div>
     </div>
 
@@ -1283,104 +1163,106 @@
     </div>
   </div>
 
-  <!-- ======================= SECTION 5: BOSS ======================= -->
+  <!-- ===================== SECTION 5: BOSS ===================== -->
   <div class="section" id="sec-5">
 
     <div class="level-badge purple">🏆 Level 5 — Final Boss</div>
 
     <div class="boss-fight">
-      <div style="font-size:50px;margin-bottom:10px;display:block;">👾</div>
-      <div style="font-family:'Orbitron',monospace;font-size:18px;color:var(--neon-pink);margin-bottom:10px;">SYNTAXIMUS — HP: 500</div>
-      <p style="font-size:14px;color:var(--muted);line-height:1.6;">The Bug Lord has scrambled the galaxy's systems! Answer ALL 5 boss challenges to defeat him and earn the <span style="color:var(--neon-yellow)">GRAND CHAMPION badge</span>!</p>
+      <div style="font-size:52px;margin-bottom:10px;">🤖</div>
+      <div style="font-family:'Orbitron',monospace;font-size:18px;color:var(--neon-pink);margin-bottom:10px;">THE LOOP REAPER — HP: 500</div>
+      <p style="font-size:14px;color:var(--muted);line-height:1.6;">The Loop Reaper creates infinite loops to crash all systems! Answer all 5 boss challenges to defeat it and earn the <span style="color:var(--neon-yellow)">⚡ LOOP COMMANDER</span> badge!</p>
     </div>
 
     <!-- BOSS Q1 -->
     <div class="quiz-box" style="border-color:var(--neon-pink);">
-      <div class="quiz-question">💀 BOSS ROUND 1 — What will this code print?<br>
-      <code style="color:var(--neon-blue)">weapons = ["sword", "bow", "staff"]<br>print(weapons[-1])</code></div>
+      <div class="quiz-question">💀 BOSS ROUND 1 — What does <code>while True:</code> mean?</div>
       <div class="quiz-options">
-        <button class="quiz-option" onclick="checkBoss('b1',this,false,1)">A) "sword"</button>
-        <button class="quiz-option" onclick="checkBoss('b1',this,false,1)">B) -1</button>
-        <button class="quiz-option" onclick="checkBoss('b1',this,true,1)">C) "staff"</button>
-        <button class="quiz-option" onclick="checkBoss('b1',this,false,1)">D) "bow"</button>
+        <button class="quiz-option" onclick="checkBoss('b1',this,false)">A) Run the loop exactly once</button>
+        <button class="quiz-option" onclick="checkBoss('b1',this,true)">B) Run forever until a break fires</button>
+        <button class="quiz-option" onclick="checkBoss('b1',this,false)">C) Check if True exists</button>
+        <button class="quiz-option" onclick="checkBoss('b1',this,false)">D) Syntax error</button>
       </div>
       <div class="quiz-feedback" id="b1-feedback"></div>
     </div>
 
     <!-- BOSS Q2 -->
     <div class="quiz-box" style="border-color:var(--neon-pink);">
-      <div class="quiz-question">💀 BOSS ROUND 2 — How many items does <code style="color:var(--neon-blue)">range(2, 7)</code> produce?</div>
+      <div class="quiz-question">💀 BOSS ROUND 2 — How many times does this print?<br>
+      <code style="color:var(--neon-blue)">x = 10<br>while x &gt; 0:<br>&nbsp;&nbsp;&nbsp;&nbsp;print("go")<br>&nbsp;&nbsp;&nbsp;&nbsp;x -= 3</code></div>
       <div class="quiz-options">
-        <button class="quiz-option" onclick="checkBoss('b2',this,false,2)">A) 7</button>
-        <button class="quiz-option" onclick="checkBoss('b2',this,false,2)">B) 6</button>
-        <button class="quiz-option" onclick="checkBoss('b2',this,true,2)">C) 5</button>
-        <button class="quiz-option" onclick="checkBoss('b2',this,false,2)">D) 2</button>
+        <button class="quiz-option" onclick="checkBoss('b2',this,false)">A) 3 times</button>
+        <button class="quiz-option" onclick="checkBoss('b2',this,true)">B) 4 times</button>
+        <button class="quiz-option" onclick="checkBoss('b2',this,false)">C) 10 times</button>
+        <button class="quiz-option" onclick="checkBoss('b2',this,false)">D) Infinite times</button>
       </div>
       <div class="quiz-feedback" id="b2-feedback"></div>
     </div>
 
     <!-- BOSS Q3 -->
     <div class="quiz-box" style="border-color:var(--neon-pink);">
-      <div class="quiz-question">💀 BOSS ROUND 3 — What does <code style="color:var(--neon-blue)">not (5 > 3)</code> return?</div>
+      <div class="quiz-question">💀 BOSS ROUND 3 — Which keyword immediately exits a loop?</div>
       <div class="quiz-options">
-        <button class="quiz-option" onclick="checkBoss('b3',this,false,3)">A) True</button>
-        <button class="quiz-option" onclick="checkBoss('b3',this,true,3)">B) False</button>
-        <button class="quiz-option" onclick="checkBoss('b3',this,false,3)">C) 5</button>
-        <button class="quiz-option" onclick="checkBoss('b3',this,false,3)">D) Error</button>
+        <button class="quiz-option" onclick="checkBoss('b3',this,false)">A) continue</button>
+        <button class="quiz-option" onclick="checkBoss('b3',this,false)">B) exit</button>
+        <button class="quiz-option" onclick="checkBoss('b3',this,true)">C) break</button>
+        <button class="quiz-option" onclick="checkBoss('b3',this,false)">D) stop</button>
       </div>
       <div class="quiz-feedback" id="b3-feedback"></div>
     </div>
 
     <!-- BOSS Q4 -->
     <div class="quiz-box" style="border-color:var(--neon-pink);">
-      <div class="quiz-question">💀 BOSS ROUND 4 — What will this loop print?<br>
-      <code style="color:var(--neon-blue)">for i in range(1, 4):<br>&nbsp;&nbsp;&nbsp;&nbsp;print(i)</code></div>
+      <div class="quiz-question">💀 BOSS ROUND 4 — What does this output?<br>
+      <code style="color:var(--neon-blue)">n = 1<br>while n &lt;= 6:<br>&nbsp;&nbsp;&nbsp;&nbsp;if n % 2 == 0:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n += 1<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;continue<br>&nbsp;&nbsp;&nbsp;&nbsp;print(n)<br>&nbsp;&nbsp;&nbsp;&nbsp;n += 1</code></div>
       <div class="quiz-options">
-        <button class="quiz-option" onclick="checkBoss('b4',this,false,4)">A) 0, 1, 2, 3</button>
-        <button class="quiz-option" onclick="checkBoss('b4',this,true,4)">B) 1, 2, 3</button>
-        <button class="quiz-option" onclick="checkBoss('b4',this,false,4)">C) 1, 2, 3, 4</button>
-        <button class="quiz-option" onclick="checkBoss('b4',this,false,4)">D) 4</button>
+        <button class="quiz-option" onclick="checkBoss('b4',this,false)">A) 1, 2, 3, 4, 5, 6</button>
+        <button class="quiz-option" onclick="checkBoss('b4',this,false)">B) 2, 4, 6</button>
+        <button class="quiz-option" onclick="checkBoss('b4',this,true)">C) 1, 3, 5</button>
+        <button class="quiz-option" onclick="checkBoss('b4',this,false)">D) Infinite loop</button>
       </div>
       <div class="quiz-feedback" id="b4-feedback"></div>
     </div>
 
     <!-- BOSS Q5 -->
     <div class="quiz-box" style="border-color:var(--neon-pink);">
-      <div class="quiz-question">💀 BOSS ROUND 5 — What does this return?<br>
-      <code style="color:var(--neon-blue)">score = 90<br>print(score >= 80 or score == 100)</code></div>
+      <div class="quiz-question">💀 BOSS ROUND 5 — What is the MINIMUM to prevent an infinite loop?</div>
       <div class="quiz-options">
-        <button class="quiz-option" onclick="checkBoss('b5',this,true,5)">A) True</button>
-        <button class="quiz-option" onclick="checkBoss('b5',this,false,5)">B) False</button>
-        <button class="quiz-option" onclick="checkBoss('b5',this,false,5)">C) 90</button>
-        <button class="quiz-option" onclick="checkBoss('b5',this,false,5)">D) Error</button>
+        <button class="quiz-option" onclick="checkBoss('b5',this,false)">A) Using print() inside the loop</button>
+        <button class="quiz-option" onclick="checkBoss('b5',this,false)">B) Starting with while True</button>
+        <button class="quiz-option" onclick="checkBoss('b5',this,true)">C) Making sure the condition can become False</button>
+        <button class="quiz-option" onclick="checkBoss('b5',this,false)">D) Having at least 5 lines of code</button>
       </div>
       <div class="quiz-feedback" id="b5-feedback"></div>
     </div>
 
     <!-- FINAL MISSION -->
     <div class="mission" style="border-color:var(--neon-pink);">
-      <p><strong style="color:var(--neon-pink);">🔥 FINAL COMMAND — Defeat the Bug Lord!</strong><br><br>
-      Write a complete mini-program that:<br>
-      1️⃣ Creates a list <code style="color:var(--neon-blue)">enemies</code> = ["Goblin", "Troll", "Syntaximus"]<br>
-      2️⃣ Uses a <code style="color:var(--neon-green)">for loop</code> to print "Defeating: X" for each enemy<br>
-      3️⃣ After the loop, creates <code style="color:var(--neon-blue)">boss_defeated</code> = True<br>
-      4️⃣ Uses <code style="color:var(--neon-yellow)">if/else</code> to print "🏆 VICTORY!" or "💀 Keep fighting!"
+      <p><strong style="color:var(--neon-pink);">🔥 FINAL COMMAND — Defeat the Loop Reaper!</strong><br><br>
+      Write the complete reactor defense program:<br>
+      1️⃣ Set <code>reactor_hp = 5</code> and <code>shield_active = True</code><br>
+      2️⃣ Use <code>while shield_active:</code> as your loop<br>
+      3️⃣ Each round, subtract 1 from reactor_hp and print "Reactor HP: X"<br>
+      4️⃣ If reactor_hp hits 0, print "💥 Reactor down!" and <code>break</code><br>
+      5️⃣ If reactor_hp == 3, print "⚡ Boost! Skipping checks..." and <code>continue</code>
       </p>
-
       <button class="hint-btn" onclick="toggleHint('h5')">💡 Hint</button>
       <div class="hint-content" id="h5">
-        🔑 Step 1: <code>enemies = [...]</code><br>
-        Step 2: <code>for enemy in enemies:</code> then <code>print("Defeating:", enemy)</code><br>
-        Step 3: after the loop (no indentation): <code>boss_defeated = True</code><br>
-        Step 4: <code>if boss_defeated:</code> then print victory, else print keep fighting!
+        🔑 Order inside the loop matters!<br>
+        First: <code>reactor_hp -= 1</code><br>
+        Then: check if == 0 → print + break<br>
+        Then: check if == 3 → print + continue<br>
+        Then: print the HP<br>
+        Try tracing through on paper with hp starting at 5!
       </div>
     </div>
 
     <!-- VICTORY -->
     <div class="congrats-banner" id="victory-banner">
-      <div style="font-size:60px;margin-bottom:10px;">🏆</div>
-      <div style="font-family:'Orbitron',monospace;font-size:24px;color:var(--neon-yellow);text-shadow:0 0 20px var(--neon-yellow);">BOSS DEFEATED!</div>
-      <div style="margin-top:10px;font-size:16px;color:var(--muted);">You've mastered Lists, For Loops, Booleans & Operators!</div>
+      <div style="font-size:60px;margin-bottom:12px;">🏆</div>
+      <div style="font-family:'Orbitron',monospace;font-size:22px;color:var(--neon-yellow);text-shadow:0 0 20px var(--neon-yellow);">LOOP REAPER DEFEATED!</div>
+      <div style="margin-top:12px;font-size:16px;color:var(--muted);">You've mastered while loops, infinite loops, break and continue!</div>
+      <div style="margin-top:10px;font-family:'Orbitron',monospace;font-size:14px;color:var(--neon-orange);">⚡ LOOP COMMANDER BADGE UNLOCKED</div>
     </div>
 
     <div class="nav-btns">
@@ -1388,320 +1270,350 @@
     </div>
   </div>
 
-  <!-- FINAL SCORE -->
-  <div class="card" style="margin-top:30px;text-align:center;border-color:rgba(255,230,0,0.2);">
-    <div style="font-family:'Orbitron',monospace;font-size:13px;color:var(--muted);margin-bottom:8px;">YOUR SCORE</div>
-    <div style="font-family:'Orbitron',monospace;font-size:40px;font-weight:900;color:var(--neon-yellow);text-shadow:0 0 20px var(--neon-yellow);" id="final-xp">0</div>
-    <div style="font-size:14px;color:var(--muted);margin-top:4px;">XP Earned</div>
-    <div id="rank-display" style="margin-top:16px;font-size:18px;font-weight:800;color:var(--neon-green);"></div>
+  <!-- SCORE CARD -->
+  <div class="card" style="margin-top:30px;text-align:center;border-color:rgba(255,140,0,0.2);">
+    <div style="font-family:'Orbitron',monospace;font-size:12px;color:var(--muted);margin-bottom:8px;letter-spacing:2px;">YOUR SCORE</div>
+    <div style="font-family:'Orbitron',monospace;font-size:44px;font-weight:900;color:var(--neon-yellow);text-shadow:0 0 20px var(--neon-yellow);" id="final-xp">0</div>
+    <div style="font-size:13px;color:var(--muted);margin-top:4px;">XP Earned</div>
+    <div id="rank-display" style="margin-top:16px;font-size:18px;font-weight:800;color:var(--neon-orange);"></div>
   </div>
 
-</div>
+</div><!-- end container -->
 
 <script>
-  let xp = 0;
-  let lives = 3;
-  let level = 1;
-  const maxXP = 600;
-  let boolAlive = true;
-  let boolWeapon = true;
-  let dragOrder = [];
-  let bossAnswers = {};
+/* ── STATE ── */
+let xp = 0, lives = 3, level = 1;
+const maxXP = 560;
+let whileRunning = false, battleRunning = false;
+let fixDragId = null, fixDropped = null;
+let skippedNums = new Set();
+let bossAnswers = {}, bossCorrect = 0;
 
-  function gainXP(amount) {
-    xp += amount;
-    document.getElementById('xp-display').textContent = xp;
-    document.getElementById('final-xp').textContent = xp;
-    const pct = Math.min((xp / maxXP) * 100, 100);
-    document.getElementById('xp-bar').style.width = pct + '%';
-    showXPPopup('+' + amount + ' XP');
-    updateRank();
-
-    const lvl = Math.floor(xp / 100) + 1;
-    if (lvl > level) {
-      level = lvl;
-      document.getElementById('level-display').textContent = level;
-    }
-  }
-
-  function loseLife() {
-    if (lives > 0) lives--;
-    const hearts = ['', '♥', '♥♥', '♥♥♥'];
-    document.getElementById('lives-display').textContent = hearts[lives] || '💀';
-  }
-
-  function showXPPopup(text) {
-    const el = document.createElement('div');
-    el.className = 'xp-popup';
-    el.textContent = text;
-    document.body.appendChild(el);
-    setTimeout(() => el.remove(), 1300);
-  }
-
-  function updateRank() {
-    const ranks = [
-      [0, '🐣 Hatchling Coder'],
-      [100, '⚔️ Code Apprentice'],
-      [200, '🔮 Logic Wielder'],
-      [350, '🌀 Loop Master'],
-      [500, '🏆 GRAND CHAMPION!']
-    ];
-    let rank = ranks[0][1];
-    for (const [threshold, label] of ranks) {
-      if (xp >= threshold) rank = label;
-    }
-    document.getElementById('rank-display').textContent = rank;
-  }
-
-  // QUIZ
-  const quizFeedback = {
-    q1: { ok: "🎉 YES! Index 0 is always the FIRST item. Lists count from ZERO!", fail: "❌ Not quite! Remember: lists start at index 0, not 1. 'Aria' is at position [0]." },
-    q2: { ok: "🎉 CORRECT! len() counts ALL items. 4 items = len() returns 4!", fail: "❌ Not quite! Count the items: 'fire', 'ice', 'wind', 'earth' — that's 4!" },
-    q3: { ok: "⚡ PERFECT! range(3) gives: 0, 1, 2 — three numbers, so 3 runs!", fail: "❌ Close! range(3) creates the numbers 0, 1, 2. Count them — that's 3 runs!" },
-    q4: { ok: "🔥 UNSTOPPABLE! The loop multiplies each number by 2: 10×2=20, 20×2=40, 30×2=60!", fail: "❌ Remember: each time through the loop, n changes to the next item, and we do n*2!" },
-    q5: { ok: "🛡️ CORRECT! door_open is False, so the if block is skipped and else runs!", fail: "❌ Think: door_open = False. The if sees False and SKIPS to else!" },
-    q6: { ok: "🧠 BRILLIANT! hp >= 50 is False (30 is NOT >= 50), so AND returns False regardless!", fail: "❌ Check each part: hp >= 50 means 30 >= 50... is that True? Then remember: AND needs BOTH to be True!" },
-    q7: { ok: "💥 EXACT! != means 'not equal to'. The ! flips it!", fail: "❌ == means equal, = assigns a value. The one with ! means NOT equal!" }
-  };
-
-  function checkQuiz(id, btn, correct) {
-    const btns = btn.parentElement.querySelectorAll('.quiz-option');
-    btns.forEach(b => b.disabled = true);
-
-    const fb = document.getElementById(id + '-feedback');
-    fb.classList.add('show');
-
-    if (correct) {
-      btn.classList.add('correct');
-      fb.classList.add('ok');
-      fb.innerHTML = quizFeedback[id].ok + ' <span class="xp-burst">+20 XP</span>';
-      gainXP(20);
-    } else {
-      btn.classList.add('wrong');
-      fb.classList.add('fail');
-      fb.textContent = quizFeedback[id].fail;
-      loseLife();
-    }
-  }
-
-  // BOSS QUIZZES
-  const bossFeedback = {
-    b1: { ok: "⚡ Correct! -1 always grabs the LAST item!", fail: "❌ Remember: index -1 = last item in the list!" },
-    b2: { ok: "💥 Perfect! range(2,7) → 2,3,4,5,6 = 5 numbers!", fail: "❌ range(2,7) gives: 2,3,4,5,6. Count them! End is excluded!" },
-    b3: { ok: "🔥 Yes! 5>3 is True, then not True = False!", fail: "❌ First: is 5>3 True? Yes! Then not True = ...?" },
-    b4: { ok: "🎯 Bullseye! range(1,4) = 1,2,3. End (4) is excluded!", fail: "❌ range(1,4) starts at 1, stops BEFORE 4. So: 1, 2, 3!" },
-    b5: { ok: "🏆 INCREDIBLE! score>=80 is True (90>=80), and OR just needs ONE True!", fail: "❌ Check: is score>=80 True? (90>=80 = yes!). With OR, just ONE True is enough!" }
-  };
-
-  let bossCorrect = 0;
-
-  function checkBoss(id, btn, correct, round) {
-    const btns = btn.parentElement.querySelectorAll('.quiz-option');
-    btns.forEach(b => b.disabled = true);
-
-    const fb = document.getElementById(id + '-feedback');
-    fb.classList.add('show');
-
-    if (correct && !bossAnswers[id]) {
-      btn.classList.add('correct');
-      fb.classList.add('ok');
-      fb.innerHTML = bossFeedback[id].ok + ' <span class="xp-burst">+40 XP</span>';
-      gainXP(40);
-      bossAnswers[id] = true;
-      bossCorrect++;
-      if (bossCorrect >= 4) {
-        setTimeout(() => {
-          document.getElementById('victory-banner').classList.add('show');
-        }, 500);
-      }
-    } else if (!correct) {
-      btn.classList.add('wrong');
-      fb.classList.add('fail');
-      fb.textContent = bossFeedback[id].fail;
-      loseLife();
-    }
-  }
-
-  // SECTION NAV
-  function goToSection(n) {
-    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-    document.getElementById('sec-' + n).classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    updateProgressMap(n);
-    gainXP(10);
-  }
-
-  function updateProgressMap(current) {
-    for (let i = 1; i <= 5; i++) {
-      const node = document.getElementById('node-' + i);
-      const line = document.getElementById('line-' + i);
-      if (i < current) {
-        node.className = 'prog-circle done';
-        if (line) line.className = 'prog-line done';
-      } else if (i === current) {
-        node.className = 'prog-circle current';
-      } else {
-        node.className = 'prog-circle';
-      }
-    }
-  }
-
-  // HINT
-  function toggleHint(id) {
-    const el = document.getElementById(id);
-    el.classList.toggle('visible');
-  }
-
-  // LOOP DEMO
-  let loopRunning = false;
-  async function runLoopDemo() {
-    if (loopRunning) return;
-    loopRunning = true;
-    document.getElementById('play-btn').disabled = true;
-    const items = ['Aria', 'Bex', 'Cole', 'Dex'];
-    let output = '';
-    document.getElementById('loop-output').textContent = '';
-
-    for (let i = 0; i < items.length; i++) {
-      document.querySelectorAll('.loop-item').forEach((el, j) => {
-        el.className = 'loop-item' + (j < i ? ' done' : j === i ? ' active' : '');
-      });
-      await delay(700);
-      output += '⚔️ Fighting: ' + items[i] + '\n';
-      document.getElementById('loop-output').textContent = output;
-    }
-    document.querySelectorAll('.loop-item').forEach(el => el.className = 'loop-item done');
-    loopRunning = false;
-    document.getElementById('play-btn').disabled = false;
-  }
-
-  function resetLoopDemo() {
-    loopRunning = false;
-    document.getElementById('play-btn').disabled = false;
-    document.querySelectorAll('.loop-item').forEach(el => el.className = 'loop-item');
-    document.getElementById('loop-output').textContent = 'Press PLAY to run the loop...';
-  }
-
-  function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
-
-  // BOOL FLIP
-  function flipBool(which) {
-    if (which === 'alive') {
-      boolAlive = !boolAlive;
-      const el = document.getElementById('bool-alive');
-      el.textContent = boolAlive ? 'True' : 'False';
-      el.className = 'bool-display ' + (boolAlive ? 'bool-true' : 'bool-false');
-    } else {
-      boolWeapon = !boolWeapon;
-      const el = document.getElementById('bool-weapon');
-      el.textContent = boolWeapon ? 'True' : 'False';
-      el.className = 'bool-display ' + (boolWeapon ? 'bool-true' : 'bool-false');
-    }
-    const res = document.getElementById('bool-result');
-    if (boolAlive && boolWeapon) {
-      res.style.color = 'var(--neon-green)';
-      res.textContent = '🟢 Character is ready to fight!';
-    } else if (boolAlive && !boolWeapon) {
-      res.style.color = 'var(--neon-yellow)';
-      res.textContent = '🟡 Alive but unarmed — run!';
-    } else if (!boolAlive && boolWeapon) {
-      res.style.color = 'var(--neon-pink)';
-      res.textContent = '🔴 Has weapon but... is not alive?';
-    } else {
-      res.style.color = 'var(--neon-pink)';
-      res.textContent = '💀 Game Over! Both False!';
-    }
-  }
-
-  // OPERATOR LAB
-  function updateOpLab() {
-    const a = parseInt(document.getElementById('val-a').value);
-    const b = parseInt(document.getElementById('val-b').value);
-    document.getElementById('val-a-display').textContent = a;
-    document.getElementById('val-b-display').textContent = b;
-
-    const ops = [
-      { sym: '==', name: 'equal', result: a === b },
-      { sym: '!=', name: 'not equal', result: a !== b },
-      { sym: '>', name: 'greater', result: a > b },
-      { sym: '<', name: 'less', result: a < b },
-      { sym: '>=', name: 'greater or equal', result: a >= b },
-      { sym: '<=', name: 'less or equal', result: a <= b },
-    ];
-
-    const container = document.getElementById('op-results');
-    container.innerHTML = ops.map(op => `
-      <div style="background:var(--card2);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:12px 14px;text-align:center;">
-        <div style="font-family:'Courier New',monospace;font-size:15px;color:var(--muted);">${a} <span style="color:var(--neon-pink);font-weight:700;">${op.sym}</span> ${b}</div>
-        <div style="font-family:'Orbitron',monospace;font-size:18px;font-weight:700;margin-top:6px;color:${op.result ? 'var(--neon-green)' : 'var(--neon-pink)'};">${op.result}</div>
-      </div>
-    `).join('');
-  }
-  updateOpLab();
-
-  // DRAG AND DROP
-  let draggingId = null;
-
-  function dragStart(e, id) {
-    draggingId = id;
-    e.dataTransfer.setData('text/plain', id);
-  }
-
-  function allowDrop(e) {
-    e.preventDefault();
-    document.getElementById('drop-zone').classList.add('over');
-  }
-
-  function dropHere(e) {
-    e.preventDefault();
-    document.getElementById('drop-zone').classList.remove('over');
-    const chipId = e.dataTransfer.getData('text/plain') || draggingId;
-    const chip = document.getElementById(chipId);
-    if (!chip) return;
-    const zone = document.getElementById('drop-zone');
-    if (zone.children.length === 1 && zone.children[0].tagName !== 'DIV') {
-      zone.innerHTML = '';
-    }
-    // clone to drop zone
-    const clone = chip.cloneNode(true);
-    clone.removeAttribute('draggable');
-    clone.style.cursor = 'default';
-    clone.onclick = null;
-    zone.appendChild(clone);
-    dragOrder.push(chipId);
-    chip.style.opacity = '0.3';
-  }
-
-  function checkDragOrder() {
-    const correct = ['chip-c', 'chip-a', 'chip-b'];
-    const fb = document.getElementById('drag-feedback');
-    fb.style.display = 'block';
-
-    if (JSON.stringify(dragOrder) === JSON.stringify(correct)) {
-      fb.style.color = 'var(--neon-green)';
-      fb.innerHTML = '✅ PERFECT ORDER! First create the list, then loop, then print. You nailed it! <span class="xp-burst">+30 XP</span>';
-      gainXP(30);
-    } else {
-      fb.style.color = 'var(--neon-pink)';
-      fb.textContent = '❌ Not quite! Hint: you need data BEFORE you can loop. Which line creates the list?';
-      loseLife();
-    }
-  }
-
-  function resetDrag() {
-    dragOrder = [];
-    document.getElementById('drag-feedback').style.display = 'none';
-    const zone = document.getElementById('drop-zone');
-    zone.innerHTML = '<span style="color:var(--muted);font-size:13px;">Drop code here...</span>';
-    ['chip-a','chip-b','chip-c'].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.style.opacity = '1';
-    });
-  }
-
-  // INIT
+/* ── HUD ── */
+function gainXP(n) {
+  xp += n;
+  document.getElementById('xp-display').textContent = xp;
+  document.getElementById('final-xp').textContent = xp;
+  document.getElementById('xp-bar').style.width = Math.min(xp / maxXP * 100, 100) + '%';
+  showXPPopup('+' + n + ' XP');
+  level = Math.max(1, Math.floor(xp / 80) + 1);
+  document.getElementById('level-display').textContent = level;
   updateRank();
-  updateOpLab();
+}
+
+function loseLife() {
+  if (lives > 0) lives--;
+  const h = ['💀','♥','♥♥','♥♥♥'];
+  document.getElementById('lives-display').textContent = h[lives];
+}
+
+function showXPPopup(txt) {
+  const el = document.createElement('div');
+  el.className = 'xp-popup'; el.textContent = txt;
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 1300);
+}
+
+function updateRank() {
+  const ranks = [[0,'🐣 Loop Novice'],[100,'⚙️ Cycle Coder'],[200,'🔄 Loop Warrior'],[350,'💥 Break Master'],[500,'⚡ LOOP COMMANDER!']];
+  let r = ranks[0][1];
+  for (const [t,l] of ranks) if (xp >= t) r = l;
+  document.getElementById('rank-display').textContent = r;
+}
+
+/* ── SECTION NAV ── */
+function goToSection(n) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById('sec-' + n).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  updateProgressMap(n);
+  gainXP(10);
+}
+
+function updateProgressMap(cur) {
+  for (let i = 1; i <= 5; i++) {
+    const nd = document.getElementById('node-' + i);
+    const ln = document.getElementById('line-' + i);
+    if (i < cur)      { nd.className = 'prog-circle done'; if (ln) ln.className = 'prog-line done'; }
+    else if (i === cur){ nd.className = 'prog-circle current'; }
+    else               { nd.className = 'prog-circle'; if (ln) ln.className = 'prog-line'; }
+  }
+}
+
+/* ── HINT ── */
+function toggleHint(id) { document.getElementById(id).classList.toggle('visible'); }
+
+/* ── QUIZ DATA ── */
+const QF = {
+  q1: { ok:'🎉 Exactly! The condition is checked before every run. False = STOP!', fail:'❌ Not quite! While loops stop the moment their condition becomes False.' },
+  q2: { ok:'⚡ Perfect! count goes 1→2→3→4→5, but at 5 the condition (≤4) is False. So 4 runs!', fail:'❌ Trace it: count starts at 1, loop runs while count≤4. Count goes 1,2,3,4 — that\'s 4 runs!' },
+  q3: { ok:'☠️ Correct! B never changes n inside the loop, so n>0 stays True forever!', fail:'❌ Look carefully at each — which one NEVER changes the variable inside the loop?' },
+  q4: { ok:'💥 BULLSEYE! break = emergency exit, loop stops immediately!', fail:'❌ break doesn\'t skip or pause — it EXITS the loop entirely, right then and there!' },
+  q5: { ok:'🏆 Yes! When i==3, break fires BEFORE print(i). So 0,1,2 print, then stop!', fail:'❌ Trace it: i goes 0,1,2 (prints each), then at i==3 the break fires BEFORE print — so 3 never prints!' },
+  q6: { ok:'🎯 Nailed it! break exits completely, continue just skips the current run!', fail:'❌ Remember: break = EXIT the loop. continue = skip THIS round, keep looping.' },
+  q7: { ok:'🔥 Perfect! When i==2, continue skips print(i). So 2 is never printed!', fail:'❌ Trace it: i increments first (1,2,3,4,5). When i==2, continue skips print. Result: 1,3,4,5.' }
+};
+
+const BF = {
+  b1: { ok:'⚡ Correct! while True never naturally stops — it needs a break to exit!', fail:'❌ while True means the condition is always True, so it loops forever... unless break fires!' },
+  b2: { ok:'💥 Yes! x goes 10,7,4,1 — all >0, so 4 prints. Then -2, which is ≤0, loop stops!', fail:'❌ Trace x: starts 10, then 7, then 4, then 1 (all >0 → print). Then 1-3=-2, not >0, stop. Count = 4!' },
+  b3: { ok:'🏆 Exact! break is the emergency exit — the only built-in loop terminator!', fail:'❌ Python only has break to force-exit. exit() closes the whole program, stop/quit don\'t exist!' },
+  b4: { ok:'🧠 INCREDIBLE! Even numbers increment and continue, skipping their print. So only 1,3,5 print!', fail:'❌ n%2==0 means "n is even". When even: n+1 then continue (skips print). So only odd numbers print!' },
+  b5: { ok:'🏆 PERFECT! The condition must eventually become False, or use break. That\'s the golden rule!', fail:'❌ The only real requirement is that the condition can become False (or a break fires). Everything else is optional!' }
+};
+
+function checkQuiz(id, btn, correct) {
+  btn.parentElement.querySelectorAll('.quiz-option').forEach(b => b.disabled = true);
+  const fb = document.getElementById(id + '-feedback');
+  fb.classList.add('show');
+  if (correct) {
+    btn.classList.add('correct');
+    fb.classList.add('ok');
+    fb.innerHTML = QF[id].ok + ' <span class="xp-burst">+20 XP</span>';
+    gainXP(20);
+  } else {
+    btn.classList.add('wrong');
+    fb.classList.add('fail');
+    fb.textContent = QF[id].fail;
+    loseLife();
+  }
+}
+
+function checkBoss(id, btn, correct) {
+  btn.parentElement.querySelectorAll('.quiz-option').forEach(b => b.disabled = true);
+  const fb = document.getElementById(id + '-feedback');
+  fb.classList.add('show');
+  if (correct && !bossAnswers[id]) {
+    btn.classList.add('correct');
+    fb.classList.add('ok');
+    fb.innerHTML = BF[id].ok + ' <span class="xp-burst">+40 XP</span>';
+    gainXP(40);
+    bossAnswers[id] = true;
+    bossCorrect++;
+    if (bossCorrect >= 4) setTimeout(() => document.getElementById('victory-banner').classList.add('show'), 600);
+  } else if (!correct) {
+    btn.classList.add('wrong');
+    fb.classList.add('fail');
+    fb.textContent = BF[id].fail;
+    loseLife();
+  }
+}
+
+/* ── WHILE DEMO ── */
+function syncSliders() {
+  const st = document.getElementById('start-temp').value;
+  const cs = document.getElementById('cool-step').value;
+  const sf = document.getElementById('safe-temp').value;
+  document.getElementById('start-temp-val').textContent = st;
+  document.getElementById('cool-step-val').textContent = cs;
+  document.getElementById('safe-temp-val').textContent = sf;
+  document.getElementById('live-code').innerHTML =
+    `<span class="var">temp</span> = <span class="num">${st}</span><br>` +
+    `<span class="kw">while</span> <span class="var">temp</span> <span class="op">&gt;</span> <span class="num">${sf}</span>:<br>` +
+    `&nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">print</span>(<span class="str">"🔥 Temp:"</span>, <span class="var">temp</span>)<br>` +
+    `&nbsp;&nbsp;&nbsp;&nbsp;<span class="var">temp</span> <span class="op">-=</span> <span class="num">${cs}</span>`;
+  buildWhileTrack(parseInt(st), parseInt(cs), parseInt(sf));
+}
+
+function buildWhileTrack(st, cs, sf) {
+  const track = document.getElementById('while-track');
+  track.innerHTML = '';
+  let t = st, steps = [];
+  while (t > sf && steps.length < 12) { steps.push(t); t -= cs; }
+  steps.push(t);
+  steps.forEach((val, i) => {
+    if (i > 0) { const a = document.createElement('div'); a.className = 'wt-arrow'; a.textContent = '→'; track.appendChild(a); }
+    const node = document.createElement('div'); node.className = 'wt-step';
+    node.innerHTML = `<div class="wt-bubble" id="wb-${i}">${val}</div><div class="wt-label">${val > sf ? 'run' : 'stop'}</div>`;
+    track.appendChild(node);
+  });
+}
+
+function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+async function runWhileDemo() {
+  if (whileRunning) return;
+  whileRunning = true;
+  document.getElementById('while-play-btn').disabled = true;
+  const st = parseInt(document.getElementById('start-temp').value);
+  const cs = parseInt(document.getElementById('cool-step').value);
+  const sf = parseInt(document.getElementById('safe-temp').value);
+  let t = st, out = '', i = 0;
+  document.getElementById('while-output').textContent = '';
+  while (t > sf) {
+    const bubble = document.getElementById('wb-' + i);
+    if (bubble) bubble.className = 'wt-bubble active';
+    await delay(600);
+    out += `🔥 Temp: ${t}\n`;
+    document.getElementById('while-output').textContent = out;
+    if (bubble) bubble.className = 'wt-bubble passed';
+    t -= cs; i++;
+  }
+  const lastBubble = document.getElementById('wb-' + i);
+  if (lastBubble) { lastBubble.className = 'wt-bubble stopped'; await delay(400); }
+  out += `✅ Reactor safe! Final temp: ${t}`;
+  document.getElementById('while-output').textContent = out;
+  whileRunning = false;
+  document.getElementById('while-play-btn').disabled = false;
+}
+
+function resetWhileDemo() {
+  whileRunning = false;
+  document.getElementById('while-play-btn').disabled = false;
+  document.getElementById('while-output').textContent = 'Hit PLAY to run the reactor simulation...';
+  syncSliders();
+}
+
+/* ── BATTLE DEMO (break) ── */
+function syncBattleSliders() {
+  const hp = document.getElementById('enemy-hp').value;
+  const dmg = document.getElementById('damage').value;
+  document.getElementById('enemy-hp-val').textContent = hp;
+  document.getElementById('damage-val').textContent = dmg;
+  document.getElementById('battle-code').innerHTML =
+    `<span class="var">hp</span> = <span class="num">${hp}</span><br>` +
+    `<span class="kw">while</span> <span class="kw">True</span>:<br>` +
+    `&nbsp;&nbsp;&nbsp;&nbsp;<span class="var">hp</span> <span class="op">-=</span> <span class="num">${dmg}</span><br>` +
+    `&nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">print</span>(<span class="str">"⚔️ Hit! HP:"</span>, <span class="var">hp</span>)<br>` +
+    `&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">if</span> <span class="var">hp</span> <span class="op">&lt;=</span> <span class="num">0</span>:<br>` +
+    `&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">print</span>(<span class="str">"💀 Enemy defeated!"</span>)<br>` +
+    `&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="brk">break</span>`;
+}
+
+async function runBattleDemo() {
+  if (battleRunning) return;
+  battleRunning = true;
+  document.getElementById('battle-play-btn').disabled = true;
+  let hp = parseInt(document.getElementById('enemy-hp').value);
+  const dmg = parseInt(document.getElementById('damage').value);
+  let out = '', round = 0;
+  document.getElementById('battle-output').textContent = '';
+  while (true) {
+    await delay(500);
+    round++; hp -= dmg;
+    out += `⚔️ Round ${round} — Hit! HP: ${hp}\n`;
+    document.getElementById('battle-output').textContent = out;
+    if (hp <= 0) {
+      await delay(400);
+      out += `💀 Enemy defeated! (break fired after ${round} rounds)`;
+      document.getElementById('battle-output').textContent = out;
+      break;
+    }
+    if (round > 30) break; // safety
+  }
+  battleRunning = false;
+  document.getElementById('battle-play-btn').disabled = false;
+}
+
+function resetBattleDemo() {
+  battleRunning = false;
+  document.getElementById('battle-play-btn').disabled = false;
+  document.getElementById('battle-output').textContent = 'Hit PLAY to start the battle...';
+  syncBattleSliders();
+}
+
+/* ── FIX DRAG (infinite loop section) ── */
+function fixDragStart(e, id) {
+  fixDragId = id;
+  e.dataTransfer.setData('text/plain', id);
+}
+function fixAllowDrop(e) { e.preventDefault(); document.getElementById('fix-drop').classList.add('over'); }
+function fixDrop(e) {
+  e.preventDefault();
+  const zone = document.getElementById('fix-drop');
+  zone.classList.remove('over');
+  const id = e.dataTransfer.getData('text/plain') || fixDragId;
+  fixDropped = id;
+  zone.innerHTML = '';
+  const chip = document.getElementById(id);
+  if (chip) {
+    const clone = chip.cloneNode(true);
+    clone.removeAttribute('draggable'); clone.style.cursor = 'default'; clone.onclick = null;
+    zone.appendChild(clone);
+    chip.classList.add('used');
+  }
+}
+function checkFixDrop() {
+  const fb = document.getElementById('fix-feedback');
+  fb.style.display = 'block';
+  if (fixDropped === 'fix-b') {
+    fb.style.color = 'var(--neon-green)';
+    fb.innerHTML = '✅ CORRECT! <code>energy -= 20</code> shrinks the variable each loop so it eventually hits 0 and the while condition fails. Loop stops! <span class="xp-burst">+30 XP</span>';
+    gainXP(30);
+  } else {
+    fb.style.color = 'var(--neon-pink)';
+    fb.textContent = '❌ Not quite! Think: the loop condition checks "energy > 0". What needs to happen to make energy eventually NOT greater than 0?';
+    loseLife();
+  }
+}
+function resetFixDrop() {
+  fixDropped = null;
+  document.getElementById('fix-feedback').style.display = 'none';
+  document.getElementById('fix-drop').innerHTML = '<span class="placeholder">Drop the fix here...</span>';
+  ['fix-a','fix-b','fix-c','fix-d'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.remove('used');
+  });
+}
+
+/* ── SKIP DEMO (continue section) ── */
+function buildSkipBtns() {
+  const container = document.getElementById('skip-btns');
+  container.innerHTML = '';
+  for (let i = 1; i <= 10; i++) {
+    const btn = document.createElement('button');
+    btn.className = 'quiz-option';
+    btn.style.cssText = 'min-width:44px;text-align:center;padding:8px 6px;font-family:"Orbitron",monospace;font-size:14px;';
+    btn.textContent = i;
+    btn.onclick = () => { skippedNums.has(i) ? skippedNums.delete(i) : skippedNums.add(i); updateSkipUI(); };
+    container.appendChild(btn);
+  }
+  updateSkipUI();
+}
+
+function updateSkipUI() {
+  document.querySelectorAll('#skip-btns .quiz-option').forEach((btn, i) => {
+    const n = i + 1;
+    if (skippedNums.has(n)) {
+      btn.style.borderColor = 'var(--neon-pink)';
+      btn.style.background = 'rgba(255,45,120,0.15)';
+      btn.style.color = 'var(--neon-pink)';
+    } else {
+      btn.style.borderColor = 'rgba(255,255,255,0.12)';
+      btn.style.background = 'rgba(255,255,255,0.04)';
+      btn.style.color = 'var(--text)';
+    }
+  });
+  const skipList = [...skippedNums].sort((a,b)=>a-b).join(', ');
+  const cond = skipList.length ? [...skippedNums].map(n=>`n == ${n}`).join(' or ') : '...';
+  document.getElementById('skip-code').innerHTML =
+    `<span class="var">n</span> = <span class="num">0</span><br>` +
+    `<span class="kw">while</span> <span class="var">n</span> <span class="op">&lt;</span> <span class="num">10</span>:<br>` +
+    `&nbsp;&nbsp;&nbsp;&nbsp;<span class="var">n</span> <span class="op">+=</span> <span class="num">1</span><br>` +
+    (skipList.length ? `&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">if</span> ${cond}:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cnt">continue</span><br>` : '') +
+    `&nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">print</span>(<span class="var">n</span>)`;
+}
+
+function runSkipDemo() {
+  const printed = [];
+  for (let n = 1; n <= 10; n++) { if (!skippedNums.has(n)) printed.push(n); }
+  const skipped = [...skippedNums].sort((a,b)=>a-b);
+  let out = 'Output: ' + printed.join(', ');
+  if (skipped.length) out += `\n\n⏭️ Skipped by continue: ${skipped.join(', ')}`;
+  document.getElementById('skip-output').textContent = out;
+}
+
+function resetSkipDemo() {
+  skippedNums.clear();
+  document.getElementById('skip-output').textContent = 'Select numbers to skip, then hit RUN';
+  buildSkipBtns();
+}
+
+/* ── INIT ── */
+syncSliders();
+syncBattleSliders();
+buildSkipBtns();
+updateRank();
 </script>
 </body>
 </html>
